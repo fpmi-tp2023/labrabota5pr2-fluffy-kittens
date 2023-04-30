@@ -9,20 +9,11 @@ class MenuItem {
     MenuItem(string& label, function<void()>& callback);
     string_view View() const;
     void Execute() const;
+    void Render() const;
 
    private:
     string label_;
     function<void()> callback_;
-};
-
-class MenuData {
-   public:
-    MenuData();
-    const vector<string_view>& ViewItems() const;
-    void ExecuteItem(int index) const;
-
-   private:
-    vector<MenuItem> items_;
 };
 }  // namespace kittens
 

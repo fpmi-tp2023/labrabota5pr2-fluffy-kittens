@@ -3,8 +3,7 @@
 
 #include "../nwindow.h"
 #include "../types.h"
-#include "./menu_data.h"
-#include "./menu_view.h"
+#include "./menu_item.h"
 
 namespace kittens {
 
@@ -18,7 +17,7 @@ class Menu : public Window {
     void Render() override;
 
    private:
-    MenuData data_;
+    vector<MenuItem> items_;
     int selected_;
 };
 
