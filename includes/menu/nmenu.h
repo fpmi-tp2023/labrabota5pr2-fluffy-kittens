@@ -19,7 +19,7 @@ class Menu : public Window {
 
    private:
     MenuData data_;
-    MenuView view_;
+    int selected_;
 };
 
 }  // namespace kittens
