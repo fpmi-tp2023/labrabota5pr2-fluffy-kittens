@@ -18,25 +18,25 @@ OBJ := $(patsubst $(SRC_DIR)/%.cc,$(BUILD_DIR)/%.o,$(SRC))
 TEST_OBJ := $(patsubst $(TEST_DIR)/%.cc,$(BUILD_DIR)/%.o,$(TEST_SRC))
 
 # Libraries
-LIBS := 
+LIBS := -lncurses
 TEST_LIBS := -lgtest -lgtest_main
 
 # Main target
 MAIN_TARGET := $(BIN_DIR)/main
 $(MAIN_TARGET): $(OBJ) $(BUILD_DIR)/main.o | $(BIN_DIR)
-	$(CC) $(CFLAGS) $^ -o $@ $(LIBS)
+	$(CC) $(CFLAGS) $^ -g -o $@ $(LIBS)
 
 # Test target
 TEST_TARGET := $(BIN_DIR)/test
 $(TEST_TARGET): $(filter-out $(BUILD_DIR)/main.o,$(OBJ)) $(TEST_OBJ) | $(BIN_DIR)
-	$(CC) $(CFLAGS) $^ -o $@ $(LIBS) $(TEST_LIBS)
+	$(CC) $(CFLAGS) $^ -g -o $@ $(LIBS) $(TEST_LIBS)
 
 # Object files compilation
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cc | $(BUILD_DIR)
-	$(CC) $(CFLAGS) -c $< -o $@ -I$(INCLUDE_DIR)
+	$(CC) $(CFLAGS) -c -g $< -o $@ -I$(INCLUDE_DIR)
 
 $(BUILD_DIR)/%.o: $(TEST_DIR)/%.cc | $(BUILD_DIR)
-	$(CC) $(CFLAGS) -c $< -o $@ -I$(INCLUDE_DIR) -I$(TEST_DIR)
+	$(CC) $(CFLAGS) -c -g $< -o $@ -I$(INCLUDE_DIR) -I$(TEST_DIR)
 
 # Directories creation
 $(BUILD_DIR) $(BIN_DIR):
@@ -49,5 +49,7 @@ test: $(TEST_TARGET)
 	$(TEST_TARGET)
 run: build
 	$(MAIN_TARGET)
+debug: build
+	gdb $(MAIN_TARGET)
 clean:
 	rm -rf $(BUILD_DIR)/* $(BIN_DIR)/*
