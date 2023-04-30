@@ -1,7 +1,9 @@
 #ifndef INCLUDES_MENU_DATA_H_
 #define INCLUDES_MENU_DATA_H_
 
-#include "../types.h"
+#include <ncurses.h>
+
+#include "./types.h"
 
 namespace kittens {
 class MenuItem {
@@ -9,7 +11,7 @@ class MenuItem {
     explicit MenuItem(string& label, function<void()>& callback);
     string_view View() const;
     void Execute() const;
-    void Render(int x, int y) const;
+    void Render(WINDOW* window, int x, int y) const;
 
    private:
     string label_;

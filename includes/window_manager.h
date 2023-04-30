@@ -5,6 +5,8 @@
 #include "./types.h"
 
 namespace kittens {
+
+// typedef unique_ptr<WINDOW, void(*)(WINDOW*)> nwindow_ptr;
 class WindowManager {
    public:
     WindowManager();
@@ -12,9 +14,10 @@ class WindowManager {
     void ChangeWindow(unique_ptr<Window> next_window);
     void ReturnToPreviousWindow();
     void CloseWindow();
+    bool WindowActive() const;
 
    private:
-    WINDOW nwindow_;
+    // nwindow_ptr nwindow_;
     unique_ptr<Window> current_window_;
     unique_ptr<Window> previous_window_;
 };

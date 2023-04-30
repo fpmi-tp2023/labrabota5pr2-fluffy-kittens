@@ -1,6 +1,4 @@
-#include "../../includes/menu/menu_item.h"
-
-#include <ncurses.h>
+#include "../includes/menu_item.h"
 
 namespace kittens {
 MenuItem::MenuItem(string& label, function<void()>& callback) : label_(label), callback_(callback) {
@@ -14,7 +12,7 @@ void MenuItem::Execute() const {
     callback_();
 }
 
-void MenuItem::Render(int x, int y) const {
-    mvprintw(x, y, " %s", label_.c_str());
+void MenuItem::Render(WINDOW* window, int x, int y) const {
+    mvwprintw(window, y, x, " %s", label_.c_str());
 }
 }  // namespace kittens

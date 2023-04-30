@@ -12,7 +12,7 @@ class Window {
     Window(){};
     virtual ~Window(){};
     virtual void HandleInput(int ch) = 0;
-    virtual void Render(WINDOW& window) = 0;
+    virtual void Render(WINDOW* window) = 0;
 };
 
 }  // namespace kittens

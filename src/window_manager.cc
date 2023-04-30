@@ -11,15 +11,16 @@ WindowManager::WindowManager() : current_window_(nullptr), previous_window_(null
     curs_set(0);
 }
 
+// nwindow_(newwin(10, 20, 0, 0), [](WINDOW* win) { delwin(win); })
+
 void WindowManager::Update() {
     if (!current_window_) {
         return;
     }
-    clear();
-    current_window_->Render(nwindow_);
+    current_window_->Render(stdscr);
+    wrefresh(stdscr);
     int ch = getch();
     current_window_->HandleInput(ch);
-    refresh();
 }
 
 void WindowManager::ChangeWindow(unique_ptr<Window> next_window) {
@@ -36,5 +37,9 @@ void WindowManager::ReturnToPreviousWindow() {
 
 void WindowManager::CloseWindow() {
     previous_window_ = std::move(current_window_);
+}
+
+bool WindowManager::WindowActive() const {
+    return (current_window_.get());
 }
 }  // namespace kittens
