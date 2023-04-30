@@ -14,6 +14,7 @@ class WindowManager {
     void CloseWindow();
 
    private:
+    WINDOW nwindow_;
     unique_ptr<Window> current_window_;
     unique_ptr<Window> previous_window_;
 };
