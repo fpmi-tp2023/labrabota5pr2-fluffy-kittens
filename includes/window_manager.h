@@ -9,6 +9,9 @@ class WindowManager {
    public:
     WindowManager();
     void Update();
+    void ChangeWindow(shared_ptr<Window> next_window);
+    void ReturnToPreviousWindow();
+    void CloseWindow();
 
    private:
     unique_ptr<Window> current_window_;
