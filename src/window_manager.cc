@@ -3,12 +3,30 @@
 #include <ncurses.h>
 
 namespace kittens {
+WindowManager* WindowManager::Instance() {
+    if (!instance_) {
+        instance_ = new WindowManager();
+    }
+    return instance_;
+}
+
+void WindowManager::CleanUp() {
+    if (!instance_) {
+        return;
+    }
+    instance_->~WindowManager();
+}
+
 WindowManager::WindowManager() : current_window_(nullptr), previous_window_(nullptr) {
     initscr();
     cbreak();
     noecho();
     keypad(stdscr, TRUE);
     curs_set(0);
+}
+
+WindowManager::~WindowManager() {
+    endwin();
 }
 
 // nwindow_(newwin(10, 20, 0, 0), [](WINDOW* win) { delwin(win); })

@@ -5,12 +5,12 @@
 using namespace kittens;
 
 int main() {
-    WindowManager win_manager;
+    WindowManager& win_manager = *WindowManager::Instance();
+    atexit(WindowManager::CleanUp);
     Menu menu{"Main"};
-    menu.AddItem("Item 1", [] { return; });
-    menu.AddItem("Item 2", [] { return; });
-    menu.AddItem("Item 3", [] { return; });
-    menu.AddItem("Item 4", [] { return; });
+    menu.AddItem("Login", [] { return; });
+    menu.AddItem("Sign Up", [] { return; });
+    menu.AddItem("Exit", [] { WindowManager::Instance()->CloseWindow(); });
     win_manager.ChangeWindow(make_unique<Menu>(menu));
     while (win_manager.WindowActive()) {
         win_manager.Update();
