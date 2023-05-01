@@ -43,7 +43,7 @@ $(BUILD_DIR) $(BIN_DIR):
 	mkdir -p $@
 
 # Phony targets
-.PHONY: clean test run
+.PHONY: clean test run debug build
 build: $(MAIN_TARGET)
 test: $(TEST_TARGET)
 	$(TEST_TARGET)
