@@ -8,6 +8,26 @@ Menu::~Menu() {
 }
 
 void Menu::HandleInput(int ch) {
+    switch (ch) {
+        case KEY_UP:
+            if (selected_ > 0) {
+                selected_--;
+            }
+            break;
+
+        case KEY_DOWN:
+            if (selected_ < items_.size() - 1) {
+                selected_++;
+            }
+            break;
+
+        case '\n':
+            items_[selected_].Execute();
+            break;
+
+        default:
+            break;
+    }
 }
 
 void Menu::AddItem(string label, function<void()> callback) {
