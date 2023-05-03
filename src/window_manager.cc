@@ -3,6 +3,9 @@
 #include <ncurses.h>
 
 namespace kittens {
+
+WindowManager* WindowManager::instance_ = nullptr;
+
 WindowManager* WindowManager::Instance() {
     if (!instance_) {
         instance_ = new WindowManager();

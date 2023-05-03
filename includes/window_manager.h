@@ -22,8 +22,6 @@ class WindowManager {
     unique_ptr<Window> current_window_;
     unique_ptr<Window> previous_window_;
 };
-
-WindowManager* WindowManager::instance_ = nullptr;
 }  // namespace kittens
 
 #endif /* INCLUDES_MENU_WINDOW_MANAGER_H_ */
