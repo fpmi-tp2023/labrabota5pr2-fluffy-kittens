@@ -47,11 +47,6 @@ void Menu::Render(WINDOW* window) {
 
     box(window, 0, 0);
 
-    int title_x = (x - title_.length()) / 2;
-    wattron(window, A_BOLD);  // enable bold font
-    mvwprintw(window, 1, title_x, title_.c_str());
-    wattroff(window, A_BOLD);  // disable bold font
-
     int items_num = items_.size();
     for (int i = 0; i < items_num; ++i) {
         int item_x = (menu_width - items_[i].View().length()) / 2;
