@@ -43,7 +43,7 @@ $(BUILD_DIR) $(BIN_DIR):
 	mkdir -p $@
 
 # Phony targets
-.PHONY: clean test run debug build
+.PHONY: clean test run debug build check distcheck
 build: $(MAIN_TARGET)
 test: $(TEST_TARGET)
 	$(TEST_TARGET)
@@ -53,3 +53,7 @@ debug: build
 	gdb $(MAIN_TARGET)
 clean:
 	rm -rf $(BUILD_DIR)/* $(BIN_DIR)/*
+check:
+	shell: /usr/bin/bash -e {0}
+distcheck:
+	shell: /usr/bin/bash -e {0}
