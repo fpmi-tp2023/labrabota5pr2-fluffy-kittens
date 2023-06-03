@@ -1,5 +1,5 @@
-#ifndef INCLUDES_MENU_DATA_H_
-#define INCLUDES_MENU_DATA_H_
+#ifndef INCLUDES_MENU_ITEM_H_
+#define INCLUDES_MENU_ITEM_H_
 
 #include <ncurses.h>
 
@@ -20,4 +20,4 @@ class MenuItem {
 
 }  // namespace kittens
 
-#endif /* INCLUDES_MENU_DATA_H_ */
+#endif /* INCLUDES_MENU_ITEM_H_ */
