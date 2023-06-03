@@ -1,6 +1,6 @@
 #include "../includes/nwindow.h"
 namespace kittens {
-void Window::AddModule(unique_ptr<RenderModule> module) {
+void Window::AddModule(unique_ptr<Module> module) {
     modules_.push_back(move(module));
 }
 

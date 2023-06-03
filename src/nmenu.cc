@@ -1,7 +1,7 @@
 #include "../includes/nmenu.h"
 
 namespace kittens {
-Menu::Menu(string title) : selected_(0), title_(title) {
+Menu::Menu() : selected_(0), max_label_length_(0), items_() {
 }
 
 Menu::~Menu() {

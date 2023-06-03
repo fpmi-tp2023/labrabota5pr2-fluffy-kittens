@@ -9,7 +9,7 @@ namespace kittens {
 
 class Menu : public Window {
    public:
-    Menu(string title);
+    Menu();
     ~Menu();
     void HandleInput(int ch) override;
     void Render(WINDOW* window) override;
@@ -18,7 +18,6 @@ class Menu : public Window {
    private:
     mutable int max_label_length_;
     vector<MenuItem> items_;
-    string title_;
     int selected_;
 };
 
