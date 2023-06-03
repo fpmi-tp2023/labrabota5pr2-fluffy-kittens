@@ -44,20 +44,24 @@ void WindowManager::Update() {
     current_window_->HandleInput(ch);
 }
 
-void WindowManager::ChangeWindow(unique_ptr<Window> next_window) {
-    previous_window_ = std::move(current_window_);
-    current_window_ = std::move(next_window);
+void WindowManager::ChangeWindow(shared_ptr<Window> next_window) {
+    previous_window_ = current_window_;
+    current_window_ = next_window;
+    clear();
 }
 
 void WindowManager::ReturnToPreviousWindow() {
     if (!previous_window_) {
         return;
     }
-    current_window_ = std::move(previous_window_);
+    current_window_ = previous_window_;
+    clear();
 }
 
 void WindowManager::CloseWindow() {
-    previous_window_ = std::move(current_window_);
+    previous_window_ = current_window_;
+    current_window_ = nullptr;
+    clear();
 }
 
 bool WindowManager::WindowActive() const {
