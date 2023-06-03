@@ -1,8 +1,7 @@
 #include "../includes/nmodule_note.h"
 
 namespace kittens {
-NoteModule::NoteModule(vector<string> notes) {
-    notes_ = notes;
+NoteModule::NoteModule(vector<string> notes) : notes_(notes) {
 }
 
 NoteModule::~NoteModule() {

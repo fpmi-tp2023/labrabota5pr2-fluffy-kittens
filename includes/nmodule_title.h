@@ -1,11 +1,11 @@
 #ifndef INCLUDES_NMODULE_TITLE_H_
 #define INCLUDES_NMODULE_TITLE_H_
 
-#include "./nrender_module.h"
+#include "./nmodule.h"
 #include "./types.h"
 
 namespace kittens {
-class TitleModule : RenderModule {
+class TitleModule : Module {
    public:
     TitleModule(string title);
     ~TitleModule();

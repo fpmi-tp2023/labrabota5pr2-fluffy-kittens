@@ -1,7 +1,6 @@
 #include "../includes/nmodule_title.h"
 namespace kittens {
-TitleModule::TitleModule(string title) {
-    title_ = title;
+TitleModule::TitleModule(string title) : title_(title) {
 }
 
 TitleModule::~TitleModule() {

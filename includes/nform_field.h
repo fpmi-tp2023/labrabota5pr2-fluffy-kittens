@@ -1,5 +1,5 @@
-#ifndef INCLUDES_FORM_FIELD_H_
-#define INCLUDES_FORM_FIELD_H_
+#ifndef INCLUDES_NFORM_FIELD_H_
+#define INCLUDES_NFORM_FIELD_H_
 
 #include <ncurses.h>
 
@@ -9,6 +9,7 @@ namespace kittens {
 class FormField {
    public:
     FormField(string label, function<bool(string)> validator, int max_len = 20);
+    virtual ~FormField();
     virtual void HandleInput(int ch);
     void Erase();
     virtual void Render(WINDOW* window, int x, int y) const;
@@ -24,4 +25,4 @@ class FormField {
     int max_len_;
 };
 }  // namespace kittens
-#endif /* INCLUDES_FORM_FIELD_H_ */
+#endif /* INCLUDES_NFORM_FIELD_H_ */

@@ -1,13 +1,13 @@
 #ifndef INCLUDES_NWINDOW_NOTE_H_
 #define INCLUDES_NWINDOW_NOTE_H_
 
-#include "./nrender_module.h"
+#include "./nmodule.h"
 #include "./nwindow.h"
 #include "./types.h"
 
 namespace kittens {
 
-class NoteModule : RenderModule {
+class NoteModule : Module {
    public:
     NoteModule(vector<string> notes);
     ~NoteModule();
