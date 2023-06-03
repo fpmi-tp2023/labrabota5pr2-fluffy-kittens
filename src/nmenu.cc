@@ -57,6 +57,8 @@ void Menu::Render(WINDOW* window) {
       wattroff(window, A_REVERSE);
     }
   }
+
+  RenderModules(window);
 };
 
 }  // namespace kittens
