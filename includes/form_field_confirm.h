@@ -6,12 +6,12 @@
 
 namespace kittens {
 class FormFieldConfirm : public FormField {
-   public:
-    FormFieldConfirm(string label, shared_ptr<FormField> field);
-    bool IsMatchingConfirm(string value) const;
+ public:
+  FormFieldConfirm(string label, shared_ptr<FormField> field);
+  bool IsMatchingConfirm(string value) const;
 
-   protected:
-    shared_ptr<FormField> confirm_field_;
+ protected:
+  shared_ptr<FormField> confirm_field_;
 };
 }  // namespace kittens
 

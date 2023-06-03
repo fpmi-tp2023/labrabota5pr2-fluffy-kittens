@@ -3,6 +3,8 @@
 
 #include "./nform.h"
 #include "./nmenu.h"
+#include "./nmodule_note.h"
+#include "./nmodule_title.h"
 
 namespace kittens {
 shared_ptr<Menu> CreateMainMenu();

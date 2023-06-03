@@ -7,15 +7,15 @@
 
 namespace kittens {
 class MenuItem {
-   public:
-    explicit MenuItem(string& label, function<void()>& callback);
-    string_view View() const;
-    void Execute() const;
-    void Render(WINDOW* window, int x, int y) const;
+ public:
+  explicit MenuItem(string& label, function<void()>& callback);
+  string_view View() const;
+  void Execute() const;
+  void Render(WINDOW* window, int x, int y) const;
 
-   private:
-    string label_;
-    function<void()> callback_;
+ private:
+  string label_;
+  function<void()> callback_;
 };
 
 }  // namespace kittens

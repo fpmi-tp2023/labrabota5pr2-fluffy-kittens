@@ -9,16 +9,16 @@
 namespace kittens {
 
 class Window {
-   public:
-    Window(){};
-    virtual ~Window(){};
-    virtual void HandleInput(int ch) = 0;
-    virtual void Render(WINDOW* window) = 0;
-    void AddModule(unique_ptr<Module> module);
-    void RenderModules(WINDOW* window);
+ public:
+  Window(){};
+  virtual ~Window(){};
+  virtual void HandleInput(int ch) = 0;
+  virtual void Render(WINDOW* window) = 0;
+  void AddModule(unique_ptr<Module> module);
+  void RenderModules(WINDOW* window);
 
-   protected:
-    vector<unique_ptr<Module>> modules_;
+ protected:
+  vector<unique_ptr<Module>> modules_;
 };
 
 }  // namespace kittens

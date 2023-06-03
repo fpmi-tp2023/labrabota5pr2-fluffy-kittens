@@ -5,10 +5,10 @@
 
 namespace kittens {
 class Module {
-   public:
-    Module(){};
-    virtual ~Module() = default;
-    virtual void Render(WINDOW* window) = 0;
+ public:
+  Module();
+  virtual ~Module();
+  virtual void Render(WINDOW* window) = 0;
 };
 
 }  // namespace kittens

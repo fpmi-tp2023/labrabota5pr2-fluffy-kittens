@@ -19,6 +19,14 @@ shared_ptr<Form> CreateSignUpForm() {
     signUp->AddField(move(loginField));
     signUp->AddField(move(passwordField));
 
+    auto title = make_unique<TitleModule>("Authorization");
+
+    vector<string> notesText = {"Press Enter to submit"};
+    auto notes = make_unique<NoteModule>(notesText);
+
+    signUp->AddModule(move(title));
+    signUp->AddModule(move(notes));
+
     return signUp;
 }
 
@@ -36,6 +44,14 @@ shared_ptr<Menu> CreateAuthenthicationMenu() {
     authMenu->AddItem("Guest", goToLoginForm);
     authMenu->AddItem("Admin", goToLoginForm);
     authMenu->AddItem("Back", goBack);
+
+    auto title = make_unique<TitleModule>("Authenthication");
+
+    vector<string> notesText = {"Note that admin user profiles are created by database admin"};
+    auto notes = make_unique<NoteModule>(notesText);
+
+    authMenu->AddModule(move(title));
+    authMenu->AddModule(move(notes));
 
     return authMenu;
 }
@@ -57,6 +73,10 @@ shared_ptr<Menu> CreateMainMenu() {
     mainMenu->AddItem("Login", goToAuthMenu);
     mainMenu->AddItem("Sign Up", goToSignUpForm);
     mainMenu->AddItem("Exit", [] { WindowManager::Instance()->CloseWindow(); });
+
+    auto title = make_unique<TitleModule>("Kittens");
+
+    mainMenu->AddModule(move(title));
 
     return mainMenu;
 }

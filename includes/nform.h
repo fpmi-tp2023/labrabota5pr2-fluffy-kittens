@@ -9,21 +9,21 @@
 
 namespace kittens {
 class Form : public Window {
-   public:
-    Form(shared_ptr<Window> target_window);
-    ~Form();
-    void HandleInput(int ch) override;
-    void Render(WINDOW* window) override;
-    void AddField(unique_ptr<FormField> field);
-    void RenderFields(WINDOW* window);
-    void Submit();
+ public:
+  Form(shared_ptr<Window> target_window);
+  ~Form();
+  void HandleInput(int ch) override;
+  void Render(WINDOW* window) override;
+  void AddField(unique_ptr<FormField> field);
+  void RenderFields(WINDOW* window);
+  void Submit();
 
-   protected:
-    vector<unique_ptr<FormField>> fields_;
-    shared_ptr<Window> target_window_;
-    int selected_;
-    int max_label_length_;
-    int max_value_length_;
+ protected:
+  vector<unique_ptr<FormField>> fields_;
+  shared_ptr<Window> target_window_;
+  int selected_;
+  int max_label_length_;
+  int max_value_length_;
 };
 }  // namespace kittens
 

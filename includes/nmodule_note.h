@@ -7,14 +7,14 @@
 
 namespace kittens {
 
-class NoteModule : Module {
-   public:
-    NoteModule(vector<string> notes);
-    ~NoteModule();
-    void Render(WINDOW* window) override;
+class NoteModule : public Module {
+ public:
+  NoteModule(vector<string> notes);
+  ~NoteModule();
+  void Render(WINDOW* window) override;
 
-   protected:
-    vector<string> notes_;
+ protected:
+  vector<string> notes_;
 };
 
 }  // namespace kittens
