@@ -8,18 +8,17 @@
 namespace kittens {
 
 class Menu : public Window {
-   public:
-    Menu(string title);
-    ~Menu();
-    void HandleInput(int ch) override;
-    void Render(WINDOW* window) override;
-    void AddItem(string label, function<void()> callback);
+ public:
+  Menu();
+  ~Menu();
+  void HandleInput(int ch) override;
+  void Render(WINDOW* window) override;
+  void AddItem(string label, function<void()> callback);
 
-   private:
-    mutable int max_label_length_;
-    vector<MenuItem> items_;
-    string title_;
-    int selected_;
+ private:
+  mutable int max_label_length_;
+  vector<MenuItem> items_;
+  int selected_;
 };
 
 }  // namespace kittens
