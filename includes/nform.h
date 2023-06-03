@@ -3,7 +3,7 @@
 
 #include <cctype>
 
-#include "./form_field.h"
+#include "./nform_field.h"
 #include "./nwindow.h"
 #include "./types.h"
 
@@ -24,7 +24,7 @@ class Form : public Window {
     int selected_;
     int max_label_length_;
     int max_value_length_;
-}
+};
 }  // namespace kittens
 
 #endif /* INCLUDES_NFORM_H_ */
