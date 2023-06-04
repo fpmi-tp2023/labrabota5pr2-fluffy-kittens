@@ -20,7 +20,9 @@ class WindowManager {
   WindowManager();
   ~WindowManager();
   shared_ptr<Window> current_window_;
-  stack<shared_ptr<Window>> previous_windows_;  // TO DO: Change to Stack
+  stack<shared_ptr<Window>> previous_windows_;
+  int clearBuffer;
+  const int clearRate = 5;
 };
 }  // namespace kittens
 
