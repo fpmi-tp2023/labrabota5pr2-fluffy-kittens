@@ -14,7 +14,7 @@ shared_ptr<Form> CreateSignUpForm() {
 
     auto loginField = make_unique<FormField>("Login", [](string s) { return true; });
 
-    auto passwordField = make_unique<FormField>("Password", [](string s) { return true; });
+    auto passwordField = make_unique<FormFieldSecret>("Password", [](string s) { return true; });
 
     signUp->AddField(move(loginField));
     signUp->AddField(move(passwordField));
