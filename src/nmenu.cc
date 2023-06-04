@@ -1,30 +1,35 @@
 #include "../includes/nmenu.h"
 
+#include "../includes/window_manager.h"
+
 namespace kittens {
 Menu::Menu() : selected_(0), max_label_length_(0), items_() {}
 
 Menu::~Menu() {}
 
 void Menu::HandleInput(int ch) {
-  switch (ch) {
-    case KEY_UP:
-      if (selected_ > 0) {
-        selected_--;
-      }
-      break;
+  if (ch == KEY_UP) {
+    if (selected_ > 0) {
+      selected_--;
+    }
+    return;
+  }
 
-    case KEY_DOWN:
-      if (selected_ < items_.size() - 1) {
-        selected_++;
-      }
-      break;
+  if (ch == KEY_DOWN) {
+    if (selected_ < items_.size() - 1) {
+      selected_++;
+    }
+    return;
+  }
 
-    case '\n':
-      items_[selected_].Execute();
-      break;
+  if (ch == '\n') {
+    items_[selected_].Execute();
+    return;
+  }
 
-    default:
-      break;
+  if (ch == '\t') {
+    WindowManager::Instance()->ReturnToPreviousWindow();
+    return;
   }
 }
 
