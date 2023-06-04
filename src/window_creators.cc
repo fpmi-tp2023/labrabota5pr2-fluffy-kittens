@@ -74,9 +74,13 @@ shared_ptr<Menu> CreateMainMenu() {
     mainMenu->AddItem("Sign Up", goToSignUpForm);
     mainMenu->AddItem("Exit", [] { WindowManager::Instance()->CloseWindow(); });
 
-    auto title = make_unique<TitleModule>("Kittens");
+    auto title = make_unique<TitleModule>("Fluffy Kittens");
+
+    vector<string> notesText = {"Made by A.Shpakovskiy, L.Shymkovich, T.Petrykevich"};
+    auto notes = make_unique<NoteModule>(notesText);
 
     mainMenu->AddModule(move(title));
+    mainMenu->AddModule(move(notes));
 
     return mainMenu;
 }
