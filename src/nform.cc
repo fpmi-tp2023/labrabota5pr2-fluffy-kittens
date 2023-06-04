@@ -17,33 +17,34 @@ void Form::HandleInput(int ch) {
     fields_[selected_]->HandleInput(ch);
     return;
   }
-  switch (ch) {
-    case KEY_ENTER:
-      Submit();
-      break;
 
-    case KEY_BACKSPACE:
-      fields_[selected_]->Erase();
-      break;
+  if (ch == KEY_BACKSPACE) {
+    fields_[selected_]->Erase();
+    return;
+  }
 
-    case KEY_UP:
-      if (selected_ > 0) {
-        selected_--;
-      }
-      break;
+  if (ch == KEY_UP) {
+    if (selected_ > 0) {
+      selected_--;
+    }
+    return;
+  }
 
-    case KEY_DOWN:
-      if (selected_ < fields_.size() - 1) {
-        selected_++;
-      }
-      break;
+  if (ch == KEY_DOWN) {
+    if (selected_ < fields_.size() - 1) {
+      selected_++;
+    }
+    return;
+  }
 
-    case 27:  // ESC
-      WindowManager::Instance()->ReturnToPreviousWindow();
-      break;
+  if (ch == KEY_ENTER) {
+    Submit();
+    return;
+  }
 
-    default:
-      break;
+  if (ch == 27) {
+    WindowManager::Instance()->ReturnToPreviousWindow();
+    return;
   }
 }
 

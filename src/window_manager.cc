@@ -20,7 +20,7 @@ void WindowManager::CleanUp() {
     instance_->~WindowManager();
 }
 
-WindowManager::WindowManager() : current_window_(nullptr), previous_window_(nullptr) {
+WindowManager::WindowManager() : current_window_(nullptr), previous_windows_() {
     initscr();
     cbreak();
     noecho();
@@ -45,21 +45,21 @@ void WindowManager::Update() {
 }
 
 void WindowManager::ChangeWindow(shared_ptr<Window> next_window) {
-    previous_window_ = current_window_;
+    previous_windows_.push(current_window_);
     current_window_ = next_window;
     clear();
 }
 
 void WindowManager::ReturnToPreviousWindow() {
-    if (!previous_window_) {
+    if (previous_windows_.empty()) {
         return;
     }
-    current_window_ = previous_window_;
+    current_window_ = previous_windows_.top();
+    previous_windows_.pop();
     clear();
 }
 
 void WindowManager::CloseWindow() {
-    previous_window_ = current_window_;
     current_window_ = nullptr;
     clear();
 }
