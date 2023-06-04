@@ -11,6 +11,7 @@
 namespace kittens {
 using std::cin;
 using std::cout;
+using std::endl;
 using std::function;
 using std::make_shared;
 using std::make_unique;
