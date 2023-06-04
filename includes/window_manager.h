@@ -20,7 +20,7 @@ class WindowManager {
   WindowManager();
   ~WindowManager();
   shared_ptr<Window> current_window_;
-  shared_ptr<Window> previous_window_;  // TO DO: Change to Stack
+  stack<shared_ptr<Window>> previous_windows_;  // TO DO: Change to Stack
 };
 }  // namespace kittens
 
