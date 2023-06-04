@@ -4,8 +4,8 @@
 #include <string>
 
 namespace kittens {
-    bool IsLoginValid(std::string value);
-    bool IsPasswordValid(std::string value);
+    bool IsLoginValid(const std::string& value);
+    bool IsPasswordValid(const std::string& value);
     bool IsDataValid(const std::string& value);
 }  // namespace kittens
 
