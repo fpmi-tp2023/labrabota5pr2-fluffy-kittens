@@ -37,12 +37,12 @@ void Form::HandleInput(int ch) {
     return;
   }
 
-  if (ch == KEY_ENTER) {
+  if (ch == '\n') {
     Submit();
     return;
   }
 
-  if (ch == 27) {
+  if (ch == '\t') {
     WindowManager::Instance()->ReturnToPreviousWindow();
     return;
   }

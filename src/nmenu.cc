@@ -22,12 +22,12 @@ void Menu::HandleInput(int ch) {
     return;
   }
 
-  if (ch == KEY_ENTER) {
+  if (ch == '\n') {
     items_[selected_].Execute();
     return;
   }
 
-  if (ch == 27) {
+  if (ch == '\t') {
     WindowManager::Instance()->ReturnToPreviousWindow();
     return;
   }

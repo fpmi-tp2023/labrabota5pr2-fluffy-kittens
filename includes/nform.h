@@ -4,6 +4,8 @@
 #include <cctype>
 
 #include "./nform_field.h"
+#include "./form_field_confirm.h"
+#include "./form_field_secret.h"
 #include "./nwindow.h"
 #include "./types.h"
 
