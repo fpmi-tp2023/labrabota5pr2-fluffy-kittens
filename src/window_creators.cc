@@ -13,7 +13,7 @@ shared_ptr<Form> CreateLoginForm() {
       make_unique<FormField>("Login", ":(", [](string s) { return true; });
 
   auto passwordField = make_unique<FormFieldSecret>(
-      "Password", "Wrong password or username", [](string s) { return true; });
+      "Password", ":)", [](string s) { return true; });
 
   loginForm->AddField(move(loginField));
   loginForm->AddField(move(passwordField));
