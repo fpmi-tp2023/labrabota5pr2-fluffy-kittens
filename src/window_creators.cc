@@ -10,10 +10,10 @@ shared_ptr<Form> CreateLoginForm() {
   auto loginForm = make_shared<Form>(loginSubmit);
 
   auto loginField =
-      make_unique<FormField>("Login", [](string s) { return true; });
+      make_unique<FormField>("Login", ":(", [](string s) { return true; });
 
-  auto passwordField =
-      make_unique<FormFieldSecret>("Password", [](string s) { return true; });
+  auto passwordField = make_unique<FormFieldSecret>(
+      "Password", "Wrong password or username", [](string s) { return true; });
 
   loginForm->AddField(move(loginField));
   loginForm->AddField(move(passwordField));
@@ -35,11 +35,15 @@ shared_ptr<Form> CreateSignUpForm() {
 
   auto signUp = make_shared<Form>(signUpSubmit);
 
-  auto loginField =
-      make_unique<FormField>("Login", [](string s) { return true; });
+  auto loginField = make_unique<FormField>(
+      "Login", "Invalid login: it must contain only latin characters",
+      [](string s) { return true; });
 
   auto passwordField =
-      make_unique<FormFieldSecret>("Password", [](string s) { return true; });
+      make_unique<FormFieldSecret>("Password",
+                                   "Your password is too short, it may be "
+                                   "unsafe: make it 8 characters at least",
+                                   [](string s) { return true; });
 
   signUp->AddField(move(loginField));
   signUp->AddField(move(passwordField));

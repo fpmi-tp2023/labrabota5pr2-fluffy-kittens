@@ -1,10 +1,11 @@
 #include "../includes/nform.h"
 
+#include "../includes/window_creators.h"
 #include "../includes/window_manager.h"
 
 namespace kittens {
-Form::Form(shared_ptr<Window> target_window)
-    : target_window_(target_window),
+Form::Form(function<void()> submit)
+    : submit_(submit),
       fields_(),
       max_label_length_(0),
       max_value_length_(0),
@@ -79,7 +80,24 @@ void Form::RenderFields(WINDOW *window) {
   }
 }
 
-void Form::Submit() {}
+void Form::Submit() {
+  vector<string> validation_output;
+  bool valid = true;
+
+  for (auto &field : fields_) {
+    if (!field->Validate()) {
+      valid = false;
+      validation_output.push_back(field->GetError());
+    }
+  }
+
+  if (!valid) {
+    WindowManager::Instance()->ChangeWindow(CreateError(validation_output));
+    return;
+  }
+
+  submit_();
+}
 
 void Form::CleanUp() {
   for (auto &field : fields_) {

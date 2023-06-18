@@ -1,9 +1,10 @@
 #include "../includes/nform_field.h"
 
 namespace kittens {
-FormField::FormField(string label, function<bool(string)> validator,
-                     int max_len) {
+FormField::FormField(string label, string error,
+                     function<bool(string)> validator, int max_len) {
   label_ = label;
+  error_ = error;
   validator_ = validator;
   max_len_ = max_len;
 }
@@ -39,4 +40,6 @@ string_view FormField::GetValue() const { return value_; }
 string_view FormField::GetLabel() const { return label_; }
 
 int FormField::GetMaxLen() const { return max_len_; }
+
+string FormField::GetError() const { return error_; }
 }  // namespace kittens

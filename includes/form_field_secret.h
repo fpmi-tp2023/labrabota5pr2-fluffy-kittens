@@ -6,7 +6,7 @@
 namespace kittens {
 class FormFieldSecret : public FormField {
  public:
-  FormFieldSecret(string label, function<bool(string)> validator,
+  FormFieldSecret(string label, string error, function<bool(string)> validator,
                   int max_len = 20);
   virtual void Render(WINDOW *window, int x, int y) const override;
 };

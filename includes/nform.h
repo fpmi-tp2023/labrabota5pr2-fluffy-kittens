@@ -6,13 +6,14 @@
 #include "./form_field_confirm.h"
 #include "./form_field_secret.h"
 #include "./nform_field.h"
+#include "./nmodule_note.h"
 #include "./nwindow.h"
 #include "./types.h"
 
 namespace kittens {
 class Form : public Window {
  public:
-  Form(shared_ptr<Window> target_window);
+  Form(function<void()> submit);
   ~Form();
   void HandleInput(int ch) override;
   void Render(WINDOW *window) override;
@@ -22,8 +23,9 @@ class Form : public Window {
   void CleanUp() override;
 
  protected:
+  function<void()> submit_;
   vector<unique_ptr<FormField>> fields_;
-  shared_ptr<Window> target_window_;
+  shared_ptr<NoteModule> validation_output_;
   int selected_;
   int max_label_length_;
   int max_value_length_;
