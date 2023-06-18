@@ -5,20 +5,23 @@
 
 namespace kittens {
 shared_ptr<Form> CreateLoginForm() {
-  auto loginForm = make_shared<Form>(nullptr);
+  auto loginSubmit = [] { return; };
+
+  auto loginForm = make_shared<Form>(loginSubmit);
 
   auto loginField =
-      make_unique<FormField>("Login", [](string s) { return true; });
+      make_unique<FormField>("Login", ":(", [](string s) { return true; });
 
-  auto passwordField =
-      make_unique<FormFieldSecret>("Password", [](string s) { return true; });
+  auto passwordField = make_unique<FormFieldSecret>(
+      "Password", ":)", [](string s) { return true; });
 
   loginForm->AddField(move(loginField));
   loginForm->AddField(move(passwordField));
 
   auto title = make_unique<TitleModule>("Authentication");
 
-  vector<string> notesText = {"Press Enter to authenticate", "Or Tab to cancel"};
+  vector<string> notesText = {"Press Enter to authenticate",
+                              "Or Tab to cancel"};
   auto notes = make_unique<NoteModule>(notesText);
 
   loginForm->AddModule(move(title));
@@ -28,21 +31,27 @@ shared_ptr<Form> CreateLoginForm() {
 }
 
 shared_ptr<Form> CreateSignUpForm() {
-  auto signUp = make_shared<Form>(
-      nullptr);  // Debug value: change target window and validators
+  auto signUpSubmit = [] { return; };
 
-  auto loginField =
-      make_unique<FormField>("Login", [](string s) { return true; });
+  auto signUp = make_shared<Form>(signUpSubmit);
+
+  auto loginField = make_unique<FormField>(
+      "Login", "Invalid login: it must contain only latin characters",
+      [](string s) { return true; });
 
   auto passwordField =
-      make_unique<FormFieldSecret>("Password", [](string s) { return true; });
+      make_unique<FormFieldSecret>("Password",
+                                   "Your password is too short, it may be "
+                                   "unsafe: make it 8 characters at least",
+                                   [](string s) { return true; });
 
   signUp->AddField(move(loginField));
   signUp->AddField(move(passwordField));
 
   auto title = make_unique<TitleModule>("Authorization");
 
-  vector<string> notesText = {"Press Enter to submit"};
+  vector<string> notesText = {"Press Enter to authenticate",
+                              "Or Tab to cancel"};
   auto notes = make_unique<NoteModule>(notesText);
 
   signUp->AddModule(move(title));
@@ -107,4 +116,13 @@ shared_ptr<Menu> CreateMainMenu() {
 
   return mainMenu;
 }
+
+shared_ptr<Message> CreateError(vector<string> lines,
+                                shared_ptr<Window> parent) {
+  auto message = make_shared<Message>(lines, parent);
+  auto title = make_unique<TitleModule>("Error");
+  message->AddModule(move(title));
+  return message;
+};
+
 }  // namespace kittens

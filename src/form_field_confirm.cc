@@ -1,7 +1,9 @@
 #include "../includes/form_field_confirm.h"
 namespace kittens {
-FormFieldConfirm::FormFieldConfirm(string label, shared_ptr<FormField> field)
-    : FormField(label, [this](string s) { return IsMatchingConfirm(s); }) {
+FormFieldConfirm::FormFieldConfirm(string label, string error,
+                                   shared_ptr<FormField> field)
+    : FormField(label, error,
+                [this](string s) { return IsMatchingConfirm(s); }) {
   confirm_field_ = field;
 }
 

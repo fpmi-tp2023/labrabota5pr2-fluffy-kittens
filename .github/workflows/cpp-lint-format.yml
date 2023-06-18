@@ -1,4 +1,5 @@
 name: C++ Lint and Format Check
+
 on:
   push:
     branches:
@@ -29,9 +30,11 @@ jobs:
         run: sudo apt-get install clang-tidy
 
       - name: Run ClangFormat
-        run: clang-format -i --style=file *.cc *.h
+        run: clang-format -i --style=file $(find . -name "*.cc" -o -name "*.h")
         working-directory: ${{ github.workspace }}
 
       - name: Run Clang-Tidy
-        run: clang-tidy *.cc -- -std=c++17
+        run: |
+          find . -name "*.cc" ! -path "./test/test_driver.cc" -exec clang-tidy {} -- -std=c++17 \;
         working-directory: ${{ github.workspace }}
+

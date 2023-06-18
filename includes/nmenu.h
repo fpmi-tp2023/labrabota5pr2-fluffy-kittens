@@ -14,6 +14,7 @@ class Menu : public Window {
   void HandleInput(int ch) override;
   void Render(WINDOW *window) override;
   void AddItem(string label, function<void()> callback);
+  void CleanUp() override;
 
  private:
   mutable int max_label_length_;

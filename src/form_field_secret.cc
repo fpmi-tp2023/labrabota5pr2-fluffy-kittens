@@ -1,8 +1,8 @@
 #include "../includes/form_field_secret.h"
 namespace kittens {
-FormFieldSecret::FormFieldSecret(string label, function<bool(string)> validator,
-                                 int max_len)
-    : FormField(label, validator, max_len) {}
+FormFieldSecret::FormFieldSecret(string label, string error,
+                                 function<bool(string)> validator, int max_len)
+    : FormField(label, error, validator, max_len) {}
 
 void FormFieldSecret::Render(WINDOW *window, int x, int y) const {
   string line(max_len_ - value_.length(), '_');

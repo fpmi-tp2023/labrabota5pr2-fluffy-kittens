@@ -39,6 +39,10 @@ void Menu::AddItem(string label, function<void()> callback) {
   max_label_length_ = std::max(max_label_length_, label_length);
 }
 
+void Menu::CleanUp() {
+  selected_ = 0;
+}
+
 void Menu::Render(WINDOW *window) {
   int x, y;
   getmaxyx(window, y, x);

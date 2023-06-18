@@ -14,6 +14,7 @@ class Window {
   virtual ~Window(){};
   virtual void HandleInput(int ch) = 0;
   virtual void Render(WINDOW *window) = 0;
+  virtual void CleanUp() = 0;
   void AddModule(unique_ptr<Module> module);
   void RenderModules(WINDOW *window);
 

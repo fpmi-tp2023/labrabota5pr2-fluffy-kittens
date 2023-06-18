@@ -8,18 +8,21 @@
 namespace kittens {
 class FormField {
  public:
-  FormField(string label, function<bool(string)> validator, int max_len = 20);
+  FormField(string label, string error, function<bool(string)> validator, int max_len = 20);
   virtual ~FormField();
   virtual void HandleInput(int ch);
   void Erase();
+  void Clear();
   virtual void Render(WINDOW *window, int x, int y) const;
   bool Validate() const;
   string_view GetValue() const;
   string_view GetLabel() const;
   int GetMaxLen() const;
+  string GetError() const;
 
  protected:
   string label_;
+  string error_;
   function<bool(string)> validator_;
   string value_;
   int max_len_;

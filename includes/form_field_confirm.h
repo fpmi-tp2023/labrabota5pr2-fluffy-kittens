@@ -7,7 +7,7 @@
 namespace kittens {
 class FormFieldConfirm : public FormField {
  public:
-  FormFieldConfirm(string label, shared_ptr<FormField> field);
+  FormFieldConfirm(string label, string error, shared_ptr<FormField> field);
   bool IsMatchingConfirm(string value) const;
 
  protected:
