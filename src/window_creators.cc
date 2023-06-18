@@ -6,6 +6,24 @@
 namespace kittens {
 shared_ptr<Form> CreateLoginForm() {
   auto loginForm = make_shared<Form>(nullptr);
+
+  auto loginField =
+      make_unique<FormField>("Login", [](string s) { return true; });
+
+  auto passwordField =
+      make_unique<FormFieldSecret>("Password", [](string s) { return true; });
+
+  loginForm->AddField(move(loginField));
+  loginForm->AddField(move(passwordField));
+
+  auto title = make_unique<TitleModule>("Authentication");
+
+  vector<string> notesText = {"Press Enter to authenticate", "Or Tab to cancel"};
+  auto notes = make_unique<NoteModule>(notesText);
+
+  loginForm->AddModule(move(title));
+  loginForm->AddModule(move(notes));
+
   return loginForm;
 }
 
