@@ -1,5 +1,6 @@
 #include "../includes/nmessage.h"
 
+#include "../includes/string_operations.h"
 #include "../includes/window_manager.h"
 
 namespace kittens {
@@ -48,49 +49,10 @@ void Message::CleanUp() {}
 void Message::SplitText(vector<string> lines) {
   render_lines_.clear();
   for (auto &line : lines) {
-    for (auto &split_line : SplitLine(line, window_width_ / 2)) {
+    for (auto &split_line : utils::SplitLine(line, window_width_ / 2)) {
       render_lines_.push_back(line);
     }
   }
-}
-
-vector<string> SplitLine(string line, int line_width) {
-  vector<string> lines = SplitWords(line);
-  vector<string> render_lines;
-  string current_line = "";
-  for (auto &word : lines) {
-    if (current_line.empty()) {
-      current_line = word;
-    } else if (current_line.length() + word.length() + 1 <= line_width) {
-      current_line += " " + word;
-    } else {
-      render_lines.push_back(current_line);
-      current_line = word;
-    }
-  }
-  if (!current_line.empty()) {
-    render_lines.push_back(current_line);
-  }
-  return render_lines;
-}
-
-vector<string> SplitWords(string line) {
-  vector<string> words;
-  string current_word = "";
-  for (char c : line) {
-    if (isspace(c)) {
-      if (!current_word.empty()) {
-        words.push_back(current_word);
-        current_word = "";
-      }
-    } else {
-      current_word += c;
-    }
-  }
-  if (!current_word.empty()) {
-    words.push_back(current_word);
-  }
-  return words;
 }
 
 }  // namespace kittens
