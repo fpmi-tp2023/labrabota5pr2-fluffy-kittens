@@ -11,4 +11,4 @@ void FormFieldSecret::Render(WINDOW *window, int x, int y) const {
   mvwprintw(window, y, x + label_.length() + 1, "%s%s", content.c_str(),
             line.c_str());
 }
-} // namespace kittens
+}  // namespace kittens

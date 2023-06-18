@@ -9,7 +9,7 @@
 namespace kittens {
 
 class Window {
-public:
+ public:
   Window(){};
   virtual ~Window(){};
   virtual void HandleInput(int ch) = 0;
@@ -17,10 +17,10 @@ public:
   void AddModule(unique_ptr<Module> module);
   void RenderModules(WINDOW *window);
 
-protected:
+ protected:
   vector<unique_ptr<Module>> modules_;
 };
 
-} // namespace kittens
+}  // namespace kittens
 
 #endif /* INCLUDES_NWINDOW_H_ */

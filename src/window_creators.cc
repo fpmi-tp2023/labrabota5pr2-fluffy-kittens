@@ -11,7 +11,7 @@ shared_ptr<Form> CreateLoginForm() {
 
 shared_ptr<Form> CreateSignUpForm() {
   auto signUp = make_shared<Form>(
-      nullptr); // Debug value: change target window and validators
+      nullptr);  // Debug value: change target window and validators
 
   auto loginField =
       make_unique<FormField>("Login", [](string s) { return true; });
@@ -89,4 +89,4 @@ shared_ptr<Menu> CreateMainMenu() {
 
   return mainMenu;
 }
-} // namespace kittens
+}  // namespace kittens

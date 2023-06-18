@@ -71,4 +71,4 @@ void WindowManager::CloseWindow() {
 }
 
 bool WindowManager::WindowActive() const { return (current_window_.get()); }
-} // namespace kittens
+}  // namespace kittens

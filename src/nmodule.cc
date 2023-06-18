@@ -3,4 +3,4 @@ namespace kittens {
 Module::Module() {}
 
 Module::~Module() {}
-} // namespace kittens
+}  // namespace kittens

@@ -21,6 +21,6 @@ using std::string;
 using std::string_view;
 using std::unique_ptr;
 using std::vector;
-} // namespace kittens
+}  // namespace kittens
 
 #endif /* INCLUDES_TYPES_H_ */

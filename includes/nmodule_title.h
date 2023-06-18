@@ -6,15 +6,15 @@
 
 namespace kittens {
 class TitleModule : public Module {
-public:
+ public:
   TitleModule(string title);
   ~TitleModule();
   void Render(WINDOW *window) override;
 
-protected:
+ protected:
   string title_;
 };
 
-} // namespace kittens
+}  // namespace kittens
 
 #endif /* INCLUDES_NMODULE_TITLE_H_ */

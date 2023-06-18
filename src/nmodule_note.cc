@@ -10,7 +10,7 @@ void NoteModule::Render(WINDOW *window) {
   int x, y;
   getmaxyx(window, y, x);
   int notes_width = 0;
-  int notes_y = y - notes_num - 1; // leave one line for padding
+  int notes_y = y - notes_num - 1;  // leave one line for padding
 
   // Calculate the width of the longest note
   for (const auto &note : notes_) {
@@ -25,4 +25,4 @@ void NoteModule::Render(WINDOW *window) {
     mvwprintw(window, notes_y + i, notes_x, notes_[i].c_str());
   }
 }
-} // namespace kittens
+}  // namespace kittens

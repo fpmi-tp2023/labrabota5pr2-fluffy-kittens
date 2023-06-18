@@ -9,4 +9,4 @@ void Window::RenderModules(WINDOW *window) {
     module->Render(window);
   }
 }
-} // namespace kittens
+}  // namespace kittens

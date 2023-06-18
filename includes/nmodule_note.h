@@ -8,15 +8,15 @@
 namespace kittens {
 
 class NoteModule : public Module {
-public:
+ public:
   NoteModule(vector<string> notes);
   ~NoteModule();
   void Render(WINDOW *window) override;
 
-protected:
+ protected:
   vector<string> notes_;
 };
 
-} // namespace kittens
+}  // namespace kittens
 
 #endif /* INCLUDES_NWINDOW_NOTE_H_ */

@@ -11,7 +11,7 @@
 
 namespace kittens {
 class Form : public Window {
-public:
+ public:
   Form(shared_ptr<Window> target_window);
   ~Form();
   void HandleInput(int ch) override;
@@ -20,13 +20,13 @@ public:
   void RenderFields(WINDOW *window);
   void Submit();
 
-protected:
+ protected:
   vector<unique_ptr<FormField>> fields_;
   shared_ptr<Window> target_window_;
   int selected_;
   int max_label_length_;
   int max_value_length_;
 };
-} // namespace kittens
+}  // namespace kittens
 
 #endif /* INCLUDES_NFORM_H_ */

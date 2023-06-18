@@ -53,7 +53,7 @@ void Menu::Render(WINDOW *window) {
   int items_num = items_.size();
   for (int i = 0; i < items_num; ++i) {
     int item_x = (menu_width - items_[i].View().length()) / 2;
-    int item_y = i + 1; // Offset for title and border
+    int item_y = i + 1;  // Offset for title and border
     if (i == selected_) {
       wattron(window, A_REVERSE);
     }
@@ -66,4 +66,4 @@ void Menu::Render(WINDOW *window) {
   RenderModules(window);
 };
 
-} // namespace kittens
+}  // namespace kittens

@@ -19,7 +19,7 @@ void FormField::HandleInput(int ch) {
 
 void FormField::Erase() {
   if (!value_.empty()) {
-    value_.pop_back(); // Remove last character
+    value_.pop_back();  // Remove last character
   }
 }
 
@@ -37,4 +37,4 @@ string_view FormField::GetValue() const { return value_; }
 string_view FormField::GetLabel() const { return label_; }
 
 int FormField::GetMaxLen() const { return max_len_; }
-} // namespace kittens
+}  // namespace kittens

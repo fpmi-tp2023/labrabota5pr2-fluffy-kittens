@@ -5,12 +5,12 @@
 
 namespace kittens {
 class Module {
-public:
+ public:
   Module();
   virtual ~Module();
   virtual void Render(WINDOW *window) = 0;
 };
 
-} // namespace kittens
+}  // namespace kittens
 
 #endif /* INCLUDES_NMODULE_H_ */
