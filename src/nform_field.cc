@@ -23,6 +23,8 @@ void FormField::Erase() {
   }
 }
 
+void FormField::Clear() { value_.clear(); }
+
 void FormField::Render(WINDOW *window, int x, int y) const {
   string line(max_len_ - value_.length(), '_');
   mvwprintw(window, y, x, "%s:", label_.c_str());

@@ -69,9 +69,9 @@ void Form::RenderFields(WINDOW *window) {
   int form_x = (x - form_width) / 2;
   int form_y = (y - form_height) / 2;
   for (int i = 0; i < fields_.size(); ++i) {
-    if (i == selected_) {          // Check if field is selected
-      wattron(window, A_REVERSE);  // enable reverse video
-    }                              /*  */
+    if (i == selected_) {           // Check if field is selected
+      wattron(window, A_REVERSE);   // enable reverse video
+    }                               /*  */
     fields_[i]->Render(window, form_x + 2, form_y + i + 1);
     if (i == selected_) {           // Check if field is selected
       wattroff(window, A_REVERSE);  // disable reverse video
@@ -80,4 +80,12 @@ void Form::RenderFields(WINDOW *window) {
 }
 
 void Form::Submit() {}
+
+void Form::CleanUp() {
+  for (auto &field : fields_) {
+    field->Clear();
+  }
+
+  selected_ = 0;
+}
 }  // namespace kittens

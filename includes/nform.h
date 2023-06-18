@@ -19,6 +19,7 @@ class Form : public Window {
   void AddField(unique_ptr<FormField> field);
   void RenderFields(WINDOW *window);
   void Submit();
+  void CleanUp() override;
 
  protected:
   vector<unique_ptr<FormField>> fields_;

@@ -12,6 +12,7 @@ class FormField {
   virtual ~FormField();
   virtual void HandleInput(int ch);
   void Erase();
+  void Clear();
   virtual void Render(WINDOW *window, int x, int y) const;
   bool Validate() const;
   string_view GetValue() const;

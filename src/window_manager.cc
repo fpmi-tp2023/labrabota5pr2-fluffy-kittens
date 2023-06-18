@@ -49,6 +49,7 @@ void WindowManager::Update() {
 
 void WindowManager::ChangeWindow(shared_ptr<Window> next_window) {
   if (current_window_) {
+    current_window_->CleanUp();
     previous_windows_.push(current_window_);
   }
 
@@ -60,6 +61,7 @@ void WindowManager::ReturnToPreviousWindow() {
   if (previous_windows_.empty()) {
     return;
   }
+  current_window_->CleanUp();
   current_window_ = previous_windows_.top();
   previous_windows_.pop();
   clear();
