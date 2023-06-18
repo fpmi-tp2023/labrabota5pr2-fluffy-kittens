@@ -29,6 +29,8 @@ void Message::Render(WINDOW *window) {
     SplitText(lines_);
   }
 
+  box(window, 0, 0);
+
   int message_height = render_lines_.size();
   int message_width = window_width_ / 2;
 
@@ -42,6 +44,8 @@ void Message::Render(WINDOW *window) {
     mvwprintw(window, line_y, line_x, line.c_str());
     line_num++;
   }
+  
+  RenderModules(window);
 }
 
 void Message::CleanUp() {}
