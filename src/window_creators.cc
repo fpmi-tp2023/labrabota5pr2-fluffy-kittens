@@ -18,7 +18,8 @@ shared_ptr<Form> CreateLoginForm() {
 
   auto title = make_unique<TitleModule>("Authentication");
 
-  vector<string> notesText = {"Press Enter to authenticate", "Or Tab to cancel"};
+  vector<string> notesText = {"Press Enter to authenticate",
+                              "Or Tab to cancel"};
   auto notes = make_unique<NoteModule>(notesText);
 
   loginForm->AddModule(move(title));
