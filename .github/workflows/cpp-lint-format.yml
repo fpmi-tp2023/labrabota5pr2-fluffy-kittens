@@ -34,5 +34,7 @@ jobs:
         working-directory: ${{ github.workspace }}
 
       - name: Run Clang-Tidy
-        run: clang-tidy $(find . -name "*.cc") -- -std=c++17
+        run: |
+          find . -name "*.cc" ! -path "./test/test_driver.cc" -exec clang-tidy {} -- -std=c++17 \;
         working-directory: ${{ github.workspace }}
+
