@@ -4,9 +4,9 @@
 #include <functional>
 #include <iostream>
 #include <memory>
+#include <stack>
 #include <string>
 #include <vector>
-#include <stack>
 
 namespace kittens {
 using std::cin;
@@ -16,11 +16,11 @@ using std::function;
 using std::make_shared;
 using std::make_unique;
 using std::shared_ptr;
+using std::stack;
 using std::string;
 using std::string_view;
 using std::unique_ptr;
 using std::vector;
-using std::stack;
-}  // namespace kittens
+} // namespace kittens
 
 #endif /* INCLUDES_TYPES_H_ */

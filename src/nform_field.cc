@@ -19,11 +19,11 @@ void FormField::HandleInput(int ch) {
 
 void FormField::Erase() {
   if (!value_.empty()) {
-    value_.pop_back();  // Remove last character
+    value_.pop_back(); // Remove last character
   }
 }
 
-void FormField::Render(WINDOW* window, int x, int y) const {
+void FormField::Render(WINDOW *window, int x, int y) const {
   string line(max_len_ - value_.length(), '_');
   mvwprintw(window, y, x, "%s:", label_.c_str());
   mvwprintw(window, y, x + label_.length() + 1, "%s%s", value_.c_str(),
@@ -37,4 +37,4 @@ string_view FormField::GetValue() const { return value_; }
 string_view FormField::GetLabel() const { return label_; }
 
 int FormField::GetMaxLen() const { return max_len_; }
-}  // namespace kittens
+} // namespace kittens

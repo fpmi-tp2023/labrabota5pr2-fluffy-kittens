@@ -5,15 +5,15 @@ NoteModule::NoteModule(vector<string> notes) : notes_(notes) {}
 
 NoteModule::~NoteModule() {}
 
-void NoteModule::Render(WINDOW* window) {
+void NoteModule::Render(WINDOW *window) {
   int notes_num = notes_.size();
   int x, y;
   getmaxyx(window, y, x);
   int notes_width = 0;
-  int notes_y = y - notes_num - 1;  // leave one line for padding
+  int notes_y = y - notes_num - 1; // leave one line for padding
 
   // Calculate the width of the longest note
-  for (const auto& note : notes_) {
+  for (const auto &note : notes_) {
     notes_width = std::max(notes_width, static_cast<int>(note.length()));
   }
 
@@ -25,4 +25,4 @@ void NoteModule::Render(WINDOW* window) {
     mvwprintw(window, notes_y + i, notes_x, notes_[i].c_str());
   }
 }
-}  // namespace kittens
+} // namespace kittens

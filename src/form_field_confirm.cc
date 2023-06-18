@@ -8,4 +8,4 @@ FormFieldConfirm::FormFieldConfirm(string label, shared_ptr<FormField> field)
 bool FormFieldConfirm::IsMatchingConfirm(string value) const {
   return confirm_field_->GetValue() == value;
 }
-}  // namespace kittens
+} // namespace kittens

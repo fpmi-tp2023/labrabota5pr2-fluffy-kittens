@@ -6,7 +6,7 @@
 using namespace kittens;
 
 int main() {
-  WindowManager& win_manager = *WindowManager::Instance();
+  WindowManager &win_manager = *WindowManager::Instance();
   atexit(WindowManager::CleanUp);
   win_manager.ChangeWindow(CreateMainMenu());
   while (win_manager.WindowActive()) {

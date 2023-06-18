@@ -4,11 +4,8 @@
 
 namespace kittens {
 Form::Form(shared_ptr<Window> target_window)
-    : target_window_(target_window),
-      fields_(),
-      max_label_length_(0),
-      max_value_length_(0),
-      selected_(0) {}
+    : target_window_(target_window), fields_(), max_label_length_(0),
+      max_value_length_(0), selected_(0) {}
 
 Form::~Form() {}
 
@@ -48,7 +45,7 @@ void Form::HandleInput(int ch) {
   }
 }
 
-void Form::Render(WINDOW* window) {
+void Form::Render(WINDOW *window) {
   box(window, 0, 0);
   RenderFields(window);
   RenderModules(window);
@@ -61,7 +58,7 @@ void Form::AddField(unique_ptr<FormField> field) {
   max_value_length_ = std::max(max_value_length_, fields_.back()->GetMaxLen());
 }
 
-void Form::RenderFields(WINDOW* window) {
+void Form::RenderFields(WINDOW *window) {
   int x, y;
   getmaxyx(window, y, x);
   int form_width = max_label_length_ + max_value_length_ + 4;
@@ -69,15 +66,15 @@ void Form::RenderFields(WINDOW* window) {
   int form_x = (x - form_width) / 2;
   int form_y = (y - form_height) / 2;
   for (int i = 0; i < fields_.size(); ++i) {
-    if (i == selected_) {          // Check if field is selected
-      wattron(window, A_REVERSE);  // enable reverse video
-    }                              /*  */
+    if (i == selected_) {         // Check if field is selected
+      wattron(window, A_REVERSE); // enable reverse video
+    }                             /*  */
     fields_[i]->Render(window, form_x + 2, form_y + i + 1);
-    if (i == selected_) {           // Check if field is selected
-      wattroff(window, A_REVERSE);  // disable reverse video
+    if (i == selected_) {          // Check if field is selected
+      wattroff(window, A_REVERSE); // disable reverse video
     }
   }
 }
 
 void Form::Submit() {}
-}  // namespace kittens
+} // namespace kittens

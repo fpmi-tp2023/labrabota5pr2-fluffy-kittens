@@ -6,8 +6,8 @@
 
 namespace kittens {
 class WindowManager {
- public:
-  static WindowManager* Instance();
+public:
+  static WindowManager *Instance();
   static void CleanUp();
   void ChangeWindow(shared_ptr<Window> next_window);
   void Update();
@@ -15,8 +15,8 @@ class WindowManager {
   void CloseWindow();
   bool WindowActive() const;
 
- private:
-  static WindowManager* instance_;
+private:
+  static WindowManager *instance_;
   WindowManager();
   ~WindowManager();
   shared_ptr<Window> current_window_;
@@ -24,6 +24,6 @@ class WindowManager {
   int clearBuffer;
   const int clearRate = 5;
 };
-}  // namespace kittens
+} // namespace kittens
 
 #endif /* INCLUDES_MENU_WINDOW_MANAGER_H_ */

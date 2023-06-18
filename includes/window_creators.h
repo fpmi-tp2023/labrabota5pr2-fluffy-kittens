@@ -11,6 +11,6 @@ shared_ptr<Menu> CreateMainMenu();
 shared_ptr<Form> CreateSignUpForm();
 shared_ptr<Menu> CreateAuthenthicationMenu();
 shared_ptr<Form> CreateLoginForm();
-}  // namespace kittens
+} // namespace kittens
 
 #endif /* INCLUDES_WINDOW_CREATORS_H_ */

@@ -4,9 +4,9 @@
 
 namespace kittens {
 
-WindowManager* WindowManager::instance_ = nullptr;
+WindowManager *WindowManager::instance_ = nullptr;
 
-WindowManager* WindowManager::Instance() {
+WindowManager *WindowManager::Instance() {
   if (!instance_) {
     instance_ = new WindowManager();
   }
@@ -71,4 +71,4 @@ void WindowManager::CloseWindow() {
 }
 
 bool WindowManager::WindowActive() const { return (current_window_.get()); }
-}  // namespace kittens
+} // namespace kittens
