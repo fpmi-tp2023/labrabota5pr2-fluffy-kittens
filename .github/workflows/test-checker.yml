@@ -20,13 +20,13 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Установка Google Test
+    - name: Download, configure and install gtest
       run: |
-        sudo apt-get install -y libgtest-dev
-        cd /usr/src/gtest
-        sudo cmake CMakeLists.txt
-        sudo make
-        sudo cp *.a /usr/lib
+        wget https://github.com/google/googletest/archive/release-1.10.0.tar.gz
+        tar xf release-1.10.0.tar.gz
+        cd googletest-release-1.10.0
+        cmake -DBUILD_SHARED_LIBS=OFF .
+        sudo make install
     
     - name: Creating directories
       run: mkdir -p build bin
