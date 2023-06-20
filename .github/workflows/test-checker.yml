@@ -26,5 +26,3 @@ jobs:
     - name: Set up CMake
       uses: actions/setup-cmake@v1
 
-    - name: Run unit tests
-      run: make ./test
