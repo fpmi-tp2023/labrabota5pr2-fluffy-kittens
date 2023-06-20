@@ -4,9 +4,6 @@ on:
     push:
       branches:
         - '*'
-      paths:
-        - '**.cc'
-        - '**.h'
     pull_request:
       branches:
         - main
