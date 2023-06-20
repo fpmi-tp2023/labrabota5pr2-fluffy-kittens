@@ -23,23 +23,23 @@ TEST(PasswordValidation, SimpleString5) {
     EXPECT_EQ(kittens::IsPasswordValid("fghjkoiuytews"), true);
 }
 
-TEST(PasswordValidation, NotEnoghLenth1) {
+TEST(PasswordValidation, NotEnoghLength1) {
     EXPECT_EQ(kittens::IsPasswordValid("1"), false);
 }
 
-TEST(PasswordValidation, NotEnoghLenth2) {
+TEST(PasswordValidation, NotEnoghLength2) {
     EXPECT_EQ(kittens::IsPasswordValid("sad"), false);
 }
 
-TEST(PasswordValidation, NotEnoghLenth3) {
+TEST(PasswordValidation, NotEnoghLength3) {
     EXPECT_EQ(kittens::IsPasswordValid("asdsd"), false);
 }
 
-TEST(PasswordValidation, NotEnoghLenth4) {
+TEST(PasswordValidation, NotEnoghLength4) {
     EXPECT_EQ(kittens::IsPasswordValid(""), false);
 }
 
-TEST(PasswordValidation, NotEnoghLenth5) {
+TEST(PasswordValidation, NotEnoghLength5) {
     EXPECT_EQ(kittens::IsPasswordValid("123"), false);
 }
 
