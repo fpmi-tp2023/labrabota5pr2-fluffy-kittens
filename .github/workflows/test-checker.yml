@@ -20,8 +20,11 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
+    - name: Creating directories
+      run: mkdir -p build bin
+
     - name: Build project
       run: make build
-
+    
     - name: Run unit tests
       run: make test
