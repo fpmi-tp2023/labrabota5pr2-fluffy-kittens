@@ -6,24 +6,30 @@
 
 ## Overview
 
-Supported Platforms:
+*Supported Platforms*:
 
 * MacOS ✔️
 * Linux ✔️
 
 *Music Salon* is a console application that allows browsing through the rich catalog of
-fictional (or not so) CD-Disc 💽 shop. We implemented responsible User Interface to provide better experience.
+fictional (or not so) CD-Disc 💽 shop
+
+Responsible UI based on our window system provides reliable experience and our rich database
+holds information about every record in the store making it easy for both guests and shop
+administrators to find exactly what they look for
 
 ## Usage
 
 You can navigate through windows using arrow keys. Press Enter to execute actions on interactive windows
 like Form or Menu. Form fields support characters and digits as input
 
-Tip: Use Tab to return to previous window
+*Tip*: Use Tab to return to previous window
+
+*Keep in mind*: Changing terminal window size while app is running may result in render artifacts
 
 ## Credits
 
-Authors:
+*Authors*:
 
 * Lizaveta Shymkovich: Data Engineering, Manual & Automated QA, Associate Production
 * Artyom Shpakovski: Programming, DevOps, Design
