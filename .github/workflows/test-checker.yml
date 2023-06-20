@@ -2,8 +2,11 @@ name: Unit tests
 
 on:
     push:
-      branches:
-        - '*'
+        branches:
+            - '*'
+        paths:
+            - '**.cc'
+            - '**.h'
     pull_request:
       branches:
         - main
@@ -19,7 +22,7 @@ jobs:
     steps:
     - name: Install gtest manually
       run: sudo apt-get install libgtest-dev && cd /usr/src/gtest && sudo cmake CMakeLists.txt && sudo make && sudo cp lib/*.a /usr/lib && sudo ln -s /usr/lib/libgtest.a /usr/local/lib/libgtest.a && sudo ln -s /usr/lib/libgtest_main.a /usr/local/lib/libgtest_main.a
-      
+
     - name: Checkout repository
       uses: actions/checkout@v2
 
