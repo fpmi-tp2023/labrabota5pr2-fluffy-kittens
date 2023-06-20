@@ -20,11 +20,19 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
+    - name: Установка Google Test
+      run: |
+        sudo apt-get install -y libgtest-dev
+        cd /usr/src/gtest
+        sudo cmake CMakeLists.txt
+        sudo make
+        sudo cp *.a /usr/lib
+    
     - name: Creating directories
       run: mkdir -p build bin
 
     - name: Build project
       run: make build
-    
+
     - name: Run unit tests
       run: make test
