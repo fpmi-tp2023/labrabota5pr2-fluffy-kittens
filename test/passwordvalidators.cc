@@ -82,3 +82,7 @@ TEST(PasswordValidation, Spaces4) {
 TEST(PasswordValidation, Spaces5) {
     EXPECT_EQ(kittens::IsPasswordValid("23456hvde 3456789oijhgfde3456yh"), false);
 }
+
+TEST(PasswordValidation, EmptyString) {
+    EXPECT_EQ(kittens::IsPasswordValid(""), false);
+}
