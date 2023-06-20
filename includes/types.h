@@ -6,6 +6,11 @@
 #include <memory>
 #include <string>
 #include <vector>
+#include <ctime>
+#include <iomanip>
+#include <sstream>
+#include <chrono>
+#include <regex>
 
 namespace kittens {
 using std::cin;
@@ -18,6 +23,11 @@ using std::string;
 using std::string_view;
 using std::unique_ptr;
 using std::vector;
+using std::regex;
+using std::regex_match;
+using std::tm;
+using std::istringstream;
+using std::get_time;
 }  // namespace kittens
 
 #endif /* INCLUDES_TYPES_H_ */
