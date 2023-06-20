@@ -2,7 +2,7 @@
 
 ## Status
 
-[![C++ Lint and Format Check](https://github.com/fpmi-tp2023/labrabota5pr2-fluffy-kittens/actions/workflows/cpp-lint-format.yml/badge.svg)](https://github.com/fpmi-tp2023/labrabota5pr2-fluffy-kittens/actions/workflows/cpp-lint-format.yml)
+[![C++ Lint and Format Check](https://github.com/fpmi-tp2023/labrabota5pr2-fluffy-kittens/actions/workflows/cpp-lint-format.yml/badge.svg)](https://github.com/fpmi-tp2023/labrabota5pr2-fluffy-kittens/actions/workflows/cpp-lint-format.yml) [![Unit tests](https://github.com/fpmi-tp2023/labrabota5pr2-fluffy-kittens/actions/workflows/test-checker.yml/badge.svg?branch=development)](https://github.com/fpmi-tp2023/labrabota5pr2-fluffy-kittens/actions/workflows/test-checker.yml)
 
 ## Overview
 
