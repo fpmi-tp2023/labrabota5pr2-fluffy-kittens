@@ -20,5 +20,8 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
+    - name: Build project
+      uses: make build
+
     - name: Run unit tests
       run: make test
