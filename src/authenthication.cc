@@ -38,7 +38,7 @@ bool AuthManager::Authorize(string login, string password) {
     return false;
   }
 
-  return stoi(results[1]) == value;
+  return stoi(string(results[1])) == value;
 }
 
 void AuthManager::AuthenthicateAsAdmin() { is_user_admin_ = true; }
