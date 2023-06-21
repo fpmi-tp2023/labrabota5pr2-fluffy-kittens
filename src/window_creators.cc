@@ -101,6 +101,16 @@ shared_ptr<Menu> CreateMainMenu() {
     WindowManager::Instance()->ChangeWindow(authMenu);
   };
 
+  // Debug Query
+
+  auto debugQuery = CreateQuery();  // change this to test
+
+  auto goToDebugQuery = [debugQuery] {
+    WindowManager::Instance()->ChangeWindow(debugQuery);
+  };
+
+  mainMenu->AddItem("Debug Query", goToDebugQuery);
+
   mainMenu->AddItem("Login", goToAuthMenu);
   mainMenu->AddItem("Sign Up", goToSignUpForm);
   mainMenu->AddItem("Exit", [] { WindowManager::Instance()->CloseWindow(); });
@@ -123,6 +133,48 @@ shared_ptr<Message> CreateError(vector<string> lines,
   auto title = make_unique<TitleModule>("Error");
   message->AddModule(move(title));
   return message;
+}
+
+shared_ptr<Query> CreateQuery() {
+  vector<string> headers{"a", "b", "c"};
+  vector<int> grow_factors{3, 4, 5};
+  auto query = make_shared<Query>(headers, grow_factors);
+
+  for (int i = 0; i < 20; i++) {
+    vector<string> row{to_string(i), to_string(i * 2), to_string(i * 3)};
+    query->AddRow(make_unique<QueryRow>(row));
+  }
+
+  return query;
+}
+
+shared_ptr<Query> CreateQuery(string query, string title,
+                              vector<string> notes) {}
+
+shared_ptr<Query> CreateQuery(string query, vector<int> growFactors,
+                              string title, vector<string> notes) {
+  // TO DO: execute sqlite3 query and get data
+  // if failed {
+  //   return nullptr;
+  // }
+
+  // auto queryWindow = make_shared<Query>(headers, growFactors);
+
+  // if (!title.empty()) {
+  //   auto titleModule = make_unique<TitleModule>(title);
+  //   queryWindow->AddModule(move(titleModule));
+  // }
+
+  // if (!notes.empty()) {
+  //   auto noteModule = make_unique<NoteModule>(notes);
+  //   queryWindow->AddModule(move(noteModule));
+  // }
+
+  // return queryWindow;
 };
+
+shared_ptr<Query> CreateAllCdQuery() {
+  return CreateQuery("my cool sql", {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, "ALL CD");
+}
 
 }  // namespace kittens

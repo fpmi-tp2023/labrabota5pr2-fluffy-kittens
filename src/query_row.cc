@@ -15,6 +15,8 @@ void QueryRow::Render(WINDOW *window, int x, int y, vector<int> columns_width) {
     total_width += column_width + 3;
     ++column_num;
   }
-  mvwprintw(window, y, x + total_width, "|");
+
+  string close{"|"};
+  mvwprintw(window, y, x + total_width + 1, "%s", close.c_str());
 }
 }  // namespace kittens
