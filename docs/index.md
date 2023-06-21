@@ -1,39 +1,47 @@
----
-layout: default
-title: My Documentation
-nav_exclude: true
----
+  ---
+  layout: default
+  title: Music Salon
+  ---
 
-# My Documentation
+  # Music Salon
 
-Welcome to my documentation! Here you will find information about my project.
+  Welcome to our documentation! Here you can find all information about the project, 
+  check the project specifiation and many more!
 
-## Getting Started
+  <details>
+  <summary>Usage</summary>
 
-- [Installation](./installation.md)
+  - [Assignment](./assignment.md)
 
-## Usage
+  </details>
 
-- [Assignment](./assignment.md)
+  <details>
+  <summary>Diagrams</summary>
 
-## Diagrams
+  - [Class Diagrams](./diagrams/classes.drawio.png)
 
-- [Class Diagrams](./diagrams/classes.drawio.png)
+  </details>
 
-## Visuals
+  <details>
+  <summary>Visuals</summary>
 
-- [Admin](./visual/Admin.jpg)
-- [All Authors](./visual/All authors.jpg)
-- [All CD](./visual/All CD.jpg)
-- [Authorization (Admin or Guest)](./visual/Authorization(Admin or Guest).jpg)
-- [Authorization (as User)](./visual/Authorization(as User).jpg)
-- [Guest](./visual/Guest.jpg)
-- [Menu](./visual/Menu.jpg)
-- [Most Popular Performer](./visual/Most popular performer.jpg)
-- [Most Sold CD](./visual/Most sold CD.jpg)
-- [Sales](./visual/Sales.jpg)
-- [Sign Up](./visual/Sign Up.jpg)
+  - [Admin](./visual/Admin.jpg)
+  - [All Authors](./visual/All authors.jpg)
+  - [All CD](./visual/All CD.jpg)
+  - [Authorization (Admin or Guest)](./visual/Authorization(Admin or Guest).jpg)
+  - [Authorization (as User)](./visual/Authorization(as User).jpg)
+  - [Guest](./visual/Guest.jpg)
+  - [Menu](./visual/Menu.jpg)
+  - [Most Popular Performer](./visual/Most popular performer.jpg)
+  - [Most Sold CD](./visual/Most sold CD.jpg)
+  - [Sales](./visual/Sales.jpg)
+  - [Sign Up](./visual/Sign Up.jpg)
 
-## License
+  </details>
 
-This documentation is released under the [MIT License](./LICENSE.txt).
+  <details>
+  <summary>License</summary>
+
+  This documentation is released under the [MIT License](./LICENSE.txt).
+
+  </details>
