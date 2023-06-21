@@ -101,6 +101,16 @@ shared_ptr<Menu> CreateMainMenu() {
     WindowManager::Instance()->ChangeWindow(authMenu);
   };
 
+  // Debug Query
+
+  auto debugQuery = CreateQuery();
+
+  auto goToDebugQuery = [debugQuery] {
+    WindowManager::Instance()->ChangeWindow(debugQuery);
+  };
+
+  mainMenu->AddItem("Debug Query", goToDebugQuery);
+
   mainMenu->AddItem("Login", goToAuthMenu);
   mainMenu->AddItem("Sign Up", goToSignUpForm);
   mainMenu->AddItem("Exit", [] { WindowManager::Instance()->CloseWindow(); });
@@ -123,6 +133,16 @@ shared_ptr<Message> CreateError(vector<string> lines,
   auto title = make_unique<TitleModule>("Error");
   message->AddModule(move(title));
   return message;
+}
+
+shared_ptr<Query> CreateQuery(){
+  vector<string> headers{"a", "b", "c"};
+  vector<int> grow_factors{3, 4, 5};
+  auto query = make_shared<Query>(headers, grow_factors);
+  query->AddRow(make_unique<QueryRow>(headers));
+  query->AddRow(make_unique<QueryRow>(headers));
+  query->AddRow(make_unique<QueryRow>(headers));
+  return query;
 };
 
 }  // namespace kittens

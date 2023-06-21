@@ -3,6 +3,7 @@
 
 #include "./nwindow.h"
 #include "./query_row.h"
+#include "./types.h"
 
 namespace kittens {
 class Query : public Window {
@@ -11,7 +12,8 @@ class Query : public Window {
   ~Query();
   void Render(WINDOW *window);
   void HandleInput(int ch);
-  void AddRow(unique_ptr<QueryRow> field);
+  void CleanUp() override;
+  void AddRow(unique_ptr<QueryRow> row);
   void CountColumnWidths(int width);
 
  protected:
