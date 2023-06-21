@@ -1,4 +1,4 @@
-# just-the-docs-template
+# Music Salon
 
 This is a *bare-minimum* template to create a [Jekyll] site that:
 
