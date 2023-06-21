@@ -30,6 +30,10 @@ bool AuthManager::Authorize(string login, string password) {
     sqlite3_free_table(results);
     sqlite3_close(db);
   }
+
+  if (rows == 0 || columns == 0) {
+    return false;
+  }
   
 
   if (!results[1]) {
