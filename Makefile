@@ -8,6 +8,7 @@ INCLUDE_DIR := includes
 BUILD_DIR := build
 BIN_DIR := bin
 TEST_DIR := test
+DATA_DIR := data
 
 # Source files
 SRC := $(wildcard $(SRC_DIR)/*.cc)
@@ -24,7 +25,7 @@ TEST_LIBS := -lgtest -lgtest_main
 # Main target
 MAIN_TARGET := $(BIN_DIR)/main
 $(MAIN_TARGET): $(OBJ) $(BUILD_DIR)/main.o | $(BIN_DIR)
-	$(CC) $(CFLAGS) $^ -g -o $@ $(LIBS)
+	$(CC) $(CFLAGS) $^ -g -o $@ $(LIBS) 
 
 # Test target
 TEST_TARGET := $(BIN_DIR)/test

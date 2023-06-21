@@ -23,4 +23,5 @@ shared_ptr<Query> CreateQuery(string query, vector<int> growFactors,
 shared_ptr<Query> CreateAllCdQuery();
 }  // namespace kittens
 
+
 #endif /* INCLUDES_WINDOW_CREATORS_H_ */

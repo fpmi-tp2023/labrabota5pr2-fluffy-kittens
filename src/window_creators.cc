@@ -4,6 +4,7 @@
 #include "../includes/window_manager.h"
 #include "../includes/types.h"
 
+
 namespace kittens {
 shared_ptr<Form> CreateLoginForm() {
   auto loginSubmit = [] { return; };
@@ -104,7 +105,7 @@ shared_ptr<Menu> CreateMainMenu() {
 
   // Debug Query
 
-  auto debugQuery = CreateQuery("SELECT * FROM PERFORMER", "DEBUG", {""});  // change this to test
+  auto debugQuery = CreateQuery("select * from performer;", {1, 1}, "role", {""});  // change this to test
 
   auto goToDebugQuery = [debugQuery] {
     WindowManager::Instance()->ChangeWindow(debugQuery);
@@ -137,12 +138,14 @@ shared_ptr<Message> CreateError(vector<string> lines,
 }
 
 shared_ptr<Query> CreateQuery() {
-  vector<string> headers{"a", "b", "c"};
-  vector<int> grow_factors{3, 4, 5};
+  
+  vector<string> headers = {"a" , "b"};
+  vector<int> grow_factors = {1, 1};
+
   auto query = make_shared<Query>(headers, grow_factors);
 
   for (int i = 0; i < 20; i++) {
-    vector<string> row{to_string(i), to_string(i * 2), to_string(i * 3)};
+    vector<string> row{to_string(i), to_string(i * 2)};
     query->AddRow(make_unique<QueryRow>(row));
   }
 
@@ -154,89 +157,53 @@ shared_ptr<Query> CreateQuery(string query, string title,
 
 shared_ptr<Query> CreateQuery(string query, vector<int> growFactors,
                               string title, vector<string> notes) {
-
+  vector<string> headers;
   sqlite3 *db;
-  char *zErrMsg = 0;
-  int rc;
-
-  char* errorMessage = nullptr;
-  char** result; // Двумерный массив для хранения результатов запроса
-  int rows, columns;
-
-  
-
-  rc = sqlite3_open("../data/MusicSalonDatabase.db", &db);
-
-  if( rc ) {
-    fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
-    return(0);
-  } else {
-    fprintf(stderr, "Opened database successfully\n");
+  int rc = sqlite3_open("MusicSalonDatabase.db", &db);
+  if (rc != SQLITE_OK) {
+    cerr<<"Cannot open database: "<< sqlite3_errmsg(db)<<endl;
   }
 
-  rc = sqlite3_get_table(db, query.c_str(), &result, &rows, &columns, &errorMessage);
+  char **results = nullptr;
+  int rows, columns;
+  rc = sqlite3_get_table(db, query.c_str(), &results, &rows, &columns, nullptr);
 
   if (rc != SQLITE_OK) {
-      fprintf(stderr, "Ошибка выполнения запроса: %s\n", errorMessage);
-      sqlite3_free(errorMessage);
-  } else {
-      // Используем результаты запроса
-      // Получаем заголовки столбцов
-      vector<string> headers;
-      for (int i = 0; i < columns; i++) {
-          headers.push_back(result[i]);
-      }
-      
-      auto queryWindow = make_shared<Query>(headers, growFactors);
-
-
-      for (int i = 1; i <= rows; i++) {
-          vector<string> row;
-          for (int j = 0; j < columns; j++) {
-              row.push_back(result[i * columns + j]);
-          }
-          queryWindow->AddRow(make_unique<QueryRow>(row));
-      }
-
-      sqlite3_free_table(result);
-      sqlite3_close(db);
-      return queryWindow;
+    cerr<<"Query execution falied: " << sqlite3_errmsg(db)<<endl;
+    sqlite3_free_table(results);
+    sqlite3_close(db);
   }
 
+  for(int i = 0; i < columns; i++) {
+    headers.push_back(results[i]);
+  }
+
+  auto queryWindow = make_shared<Query>(headers, growFactors);
+
+  for(int i = 1; i < rows + 1; ++i) {
+    vector<string> row;
+    for(int j = 0; j < columns; ++j) {
+      row.push_back(results[i * columns + j]);
+    }
+    queryWindow->AddRow(make_unique<QueryRow>(row));
+  }
+
+  sqlite3_free_table(results);
   sqlite3_close(db);
-  return nullptr;
-
-  
-  // TO DO: execute sqlite3 query and get data
-  // if failed {
-  //   return nullptr;
-  // }
-
-  // auto queryWindow = make_shared<Query>(headers, growFactors);
-
-  // if (!title.empty()) {
-  //   auto titleModule = make_unique<TitleModule>(title);
-  //   queryWindow->AddModule(move(titleModule));
-  // }
-
-  // if (!notes.empty()) {
-  //   auto noteModule = make_unique<NoteModule>(notes);
-  //   queryWindow->AddModule(move(noteModule));
-  // }
-
-  // return queryWindow;
-
-  // Assuming you have already executed an SQLite query and obtained a result set
-  // sqlite3_stmt* stmt; // Assume this is the statement handle returned by sqlite3_prepare_v2
-  // int num_cols = sqlite3_column_count(stmt); // Get the number of columns in the result set
-
-  // // Print the names of the columns
-  // for (int i = 0; i < num_cols; i++) {
-  //   const char* col_name = sqlite3_column_name(stmt, i); // Get the name of the i-th column
-  //   std::cout << "Column " << i << ": " << col_name << std::endl;
-  // }
 
 
+  if (!title.empty()) {
+    auto titleModule = make_unique<TitleModule>(title);
+    queryWindow->AddModule(move(titleModule));
+  }
+
+  if (!notes.empty()) {
+    auto noteModule = make_unique<NoteModule>(notes);
+    queryWindow->AddModule(move(noteModule));
+  }
+
+
+  return queryWindow;
 
 
 };
