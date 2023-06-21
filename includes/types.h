@@ -12,6 +12,8 @@
 #include <sstream>
 #include <chrono>
 #include <regex>
+#include <numeric>
+#include <math.h>
 
 namespace kittens {
 using std::cin;
@@ -31,6 +33,8 @@ using std::regex_match;
 using std::tm;
 using std::istringstream;
 using std::get_time;
+using std::accumulate;
+using std::floor;
 }  // namespace kittens
 
 #endif /* INCLUDES_TYPES_H_ */
