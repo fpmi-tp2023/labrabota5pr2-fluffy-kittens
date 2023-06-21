@@ -103,7 +103,7 @@ shared_ptr<Menu> CreateMainMenu() {
 
   // Debug Query
 
-  auto debugQuery = CreateQuery();
+  auto debugQuery = CreateQuery();  // change this to test
 
   auto goToDebugQuery = [debugQuery] {
     WindowManager::Instance()->ChangeWindow(debugQuery);
@@ -146,6 +146,35 @@ shared_ptr<Query> CreateQuery() {
   }
 
   return query;
+}
+
+shared_ptr<Query> CreateQuery(string query, string title,
+                              vector<string> notes) {}
+
+shared_ptr<Query> CreateQuery(string query, vector<int> growFactors,
+                              string title, vector<string> notes) {
+  // TO DO: execute sqlite3 query and get data
+  // if failed {
+  //   return nullptr;
+  // }
+
+  // auto queryWindow = make_shared<Query>(headers, growFactors);
+
+  // if (!title.empty()) {
+  //   auto titleModule = make_unique<TitleModule>(title);
+  //   queryWindow->AddModule(move(titleModule));
+  // }
+
+  // if (!notes.empty()) {
+  //   auto noteModule = make_unique<NoteModule>(notes);
+  //   queryWindow->AddModule(move(noteModule));
+  // }
+
+  // return queryWindow;
 };
+
+shared_ptr<Query> CreateAllCdQuery() {
+  return CreateQuery("my cool sql", {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, "ALL CD");
+}
 
 }  // namespace kittens
