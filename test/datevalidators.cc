@@ -26,3 +26,6 @@ TEST(DateValidation, SimpleData5) {
     EXPECT_EQ(kittens::IsDataValid("90/01/1999"), false);
 }
 
+TEST(DateValidation, EmptyString) {
+    EXPECT_EQ(kittens::IsDataValid(""), false);
+}

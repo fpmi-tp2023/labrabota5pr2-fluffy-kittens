@@ -21,3 +21,28 @@ TEST(LoginValidation, SimpleString5) {
     EXPECT_EQ(kittens::IsLoginValid("90/01/1999"), false);
 }
 
+TEST(LoginValidation, EmptyString) {
+    EXPECT_EQ(kittens::IsLoginValid(""), false);
+}
+
+TEST(LoginValidation, StringWithSpaces1) {
+    EXPECT_EQ(kittens::IsLoginValid(" "), false);
+}
+
+TEST(LoginValidation, StringWithSpaces2) {
+    EXPECT_EQ(kittens::IsLoginValid("   "), false);
+}
+
+TEST(LoginValidation, StringWithSpaces3) {
+    EXPECT_EQ(kittens::IsLoginValid(" a "), false);
+}
+
+TEST(LoginValidation, StringWithSpaces4) {
+    EXPECT_EQ(kittens::IsLoginValid("     1"), false);
+}
+
+TEST(LoginValidation, StringWithSpaces5) {
+    EXPECT_EQ(kittens::IsLoginValid(" a a a"), false);
+}
+
+
