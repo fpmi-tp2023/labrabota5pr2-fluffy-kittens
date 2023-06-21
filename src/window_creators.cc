@@ -105,7 +105,7 @@ shared_ptr<Menu> CreateMainMenu() {
 
   // Debug Query
 
-  auto debugQuery = CreateAllCdQuery();  // change this to test
+  auto debugQuery = CreateAuthorsInformation();  // change this to test
 
   auto goToDebugQuery = [debugQuery] {
     WindowManager::Instance()->ChangeWindow(debugQuery);
@@ -203,6 +203,26 @@ shared_ptr<Query> CreateQuery(string query, vector<int> growFactors,
 shared_ptr<Query> CreateAllCdQuery() {
   const char *query = "SELECT cd.ID AS CompactDisc_ID, cd.Name AS CompactDisc_Name,(SELECT SUM(Amount) FROM DiscOperation WHERE CompactDisc_ID = cd.ID AND Operation_ID = 2) AS Sold, (SELECT SUM(Amount) FROM DiscOperation WHERE CompactDisc_ID = cd.ID AND Operation_ID = 1) AS Delivered, ((SELECT SUM(Amount) FROM DiscOperation WHERE CompactDisc_ID = cd.ID AND Operation_ID = 1) - (SELECT SUM(Amount) FROM DiscOperation WHERE CompactDisc_ID = cd.ID AND Operation_ID = 2)) AS LeftInStock FROM CompactDisc cd ORDER BY LeftInStock DESC;";
   return CreateQuery(query, {1, 1, 1, 1, 1}, "ALL CD");
+}
+
+shared_ptr<Query> CreateSpecialCDQuery() {
+  const char* query = "SELECT cd.Name AS CompactDisc_Name, SUM(do.Amount) AS SoldQuantity, SUM(do.Amount * cd.Price) AS TotalPrice FROM CompactDisc cd INNER JOIN DiscOperation do ON cd.ID = do.CompactDisc_ID INNER JOIN Operation o ON do.Operation_ID = o.ID WHERE cd.ID = 1 AND do.Operation_Date BETWEEN '2023-06-11' AND '2023-06-17' AND o.Name = 'Sale' GROUP BY cd.Name;";
+  return CreateQuery(query, {1, 1, 1, 1, 1}, "ALL CD");
+}
+
+shared_ptr<Query> CreateMostSoldQuery() {
+  const char* query = "SELECT cd.Name AS CompactDisc_Name, cd.Manufacturer, cd.Price, cd.Production_Date, mc.Name AS MusicalComposition_Name, a.Name AS Author_Name, p.Name AS Performer_Name, do.TotalSold FROM (SELECT CompactDisc_ID, SUM(Amount) AS TotalSold FROM DiscOperation WHERE Operation_ID = (SELECT ID FROM Operation WHERE Name = 'Sale') GROUP BY CompactDisc_ID HAVING SUM(Amount) = (SELECT SUM(Amount) AS TotalSold FROM DiscOperation WHERE Operation_ID = (SELECT ID FROM Operation WHERE Name = 'Sale') GROUP BY CompactDisc_ID ORDER BY TotalSold DESC LIMIT 1)) AS do INNER JOIN CompactDisc cd ON do.CompactDisc_ID = cd.ID INNER JOIN MusicalComposition mc ON cd.ID = mc.CompactDisc_ID INNER JOIN Author a ON mc.Author_ID = a.ID INNER JOIN Performer p ON mc.Performer_ID = p.ID ORDER BY do.TotalSold DESC, cd.Name ASC;";
+  return CreateQuery(query, {2, 1, 1, 1, 2, 1, 1, 1}, "Most sold CD");
+}
+
+shared_ptr<Query> CreateMostPopularPerformerQuery() {
+  const char* query = "SELECT p.Name AS Performer_Name, SUM(do.Amount) AS TotalCompactDiscsSold FROM DiscOperation do INNER JOIN CompactDisc cd ON do.CompactDisc_ID = cd.ID INNER JOIN MusicalComposition mc ON cd.ID = mc.CompactDisc_ID INNER JOIN Performer p ON mc.Performer_ID = p.ID WHERE do.Operation_ID = 2 GROUP BY p.Name ORDER BY TotalCompactDiscsSold DESC LIMIT 1;";
+  return CreateQuery(query, {2, 1}, "Most Popular Performer");
+}
+
+shared_ptr<Query> CreateAuthorsInformation() {
+  const char* query = "SELECT a.Name AS Author_Name, SUM(do.Amount) AS TotalCompactDiscsSold, SUM(cd.Price * do.Amount) AS TotalRevenue FROM Author a INNER JOIN MusicalComposition mc ON a.ID = mc.Author_ID INNER JOIN CompactDisc cd ON mc.CompactDisc_ID = cd.ID INNER JOIN DiscOperation do ON cd.ID = do.CompactDisc_ID WHERE do.Operation_ID = 2 GROUP BY a.Name;";
+  return CreateQuery(query, {2, 1, 1}, "Information about Authors");
 }
 
 }  // namespace kittens
