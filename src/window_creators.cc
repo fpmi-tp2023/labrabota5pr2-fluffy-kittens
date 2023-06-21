@@ -105,7 +105,7 @@ shared_ptr<Menu> CreateMainMenu() {
 
   // Debug Query
 
-  auto debugQuery = CreateQuery("select * from performer;", {1, 1}, "role", {""});  // change this to test
+  auto debugQuery = CreateAllCdQuery();  // change this to test
 
   auto goToDebugQuery = [debugQuery] {
     WindowManager::Instance()->ChangeWindow(debugQuery);
@@ -118,14 +118,12 @@ shared_ptr<Menu> CreateMainMenu() {
   mainMenu->AddItem("Exit", [] { WindowManager::Instance()->CloseWindow(); });
 
   auto title = make_unique<TitleModule>("Fluffy Kittens");
-
   vector<string> notesText = {
       "Made by A.Shpakovski, L.Shymkovich, T.Petrykevich"};
-  auto notes = make_unique<NoteModule>(notesText);
 
+  auto notes = make_unique<NoteModule>(notesText);
   mainMenu->AddModule(move(title));
   mainMenu->AddModule(move(notes));
-
   return mainMenu;
 }
 
@@ -141,9 +139,7 @@ shared_ptr<Query> CreateQuery() {
   
   vector<string> headers = {"a" , "b"};
   vector<int> grow_factors = {1, 1};
-
   auto query = make_shared<Query>(headers, grow_factors);
-
   for (int i = 0; i < 20; i++) {
     vector<string> row{to_string(i), to_string(i * 2)};
     query->AddRow(make_unique<QueryRow>(row));
@@ -191,7 +187,6 @@ shared_ptr<Query> CreateQuery(string query, vector<int> growFactors,
   sqlite3_free_table(results);
   sqlite3_close(db);
 
-
   if (!title.empty()) {
     auto titleModule = make_unique<TitleModule>(title);
     queryWindow->AddModule(move(titleModule));
@@ -202,14 +197,12 @@ shared_ptr<Query> CreateQuery(string query, vector<int> growFactors,
     queryWindow->AddModule(move(noteModule));
   }
 
-
   return queryWindow;
-
-
 };
 
 shared_ptr<Query> CreateAllCdQuery() {
-  return CreateQuery("my cool sql", {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, "ALL CD");
+  const char *query = "SELECT cd.ID AS CompactDisc_ID, cd.Name AS CompactDisc_Name,(SELECT SUM(Amount) FROM DiscOperation WHERE CompactDisc_ID = cd.ID AND Operation_ID = 2) AS Sold, (SELECT SUM(Amount) FROM DiscOperation WHERE CompactDisc_ID = cd.ID AND Operation_ID = 1) AS Delivered, ((SELECT SUM(Amount) FROM DiscOperation WHERE CompactDisc_ID = cd.ID AND Operation_ID = 1) - (SELECT SUM(Amount) FROM DiscOperation WHERE CompactDisc_ID = cd.ID AND Operation_ID = 2)) AS LeftInStock FROM CompactDisc cd ORDER BY LeftInStock DESC;";
+  return CreateQuery(query, {1, 1, 1, 1, 1}, "ALL CD");
 }
 
 }  // namespace kittens
