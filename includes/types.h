@@ -41,6 +41,7 @@ using std::floor;
 using std::min;
 using std::to_string;
 using std::cerr;
+using std::stoi;
 }  // namespace kittens
 
 #endif /* INCLUDES_TYPES_H_ */

@@ -10,7 +10,7 @@ class AuthManager {
   AuthManager();
   ~AuthManager();
   static int AuthHash(string password);
-  bool Authorize(string login, string password);
+  static bool Authorize(string login, string password);
   void AuthenthicateAsAdmin();
   bool IsUserAdmin() const;
   bool IsUserAuthorized() const;
