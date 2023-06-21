@@ -31,14 +31,13 @@ bool AuthManager::Authorize(string login, string password) {
     sqlite3_close(db);
   }
   
+
   if (!results[1]) {
     sqlite3_free_table(results);
     sqlite3_close(db);
     return false;
   }
 
-  sqlite3_free_table(results);
-  sqlite3_close(db);
   return stoi(results[1]) == value;
 }
 
