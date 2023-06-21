@@ -18,7 +18,7 @@ OBJ := $(patsubst $(SRC_DIR)/%.cc,$(BUILD_DIR)/%.o,$(SRC))
 TEST_OBJ := $(patsubst $(TEST_DIR)/%.cc,$(BUILD_DIR)/%.o,$(TEST_SRC))
 
 # Libraries
-LIBS := -lncurses
+LIBS := -lncurses -lsqlite3
 TEST_LIBS := -lgtest -lgtest_main
 
 # Main target

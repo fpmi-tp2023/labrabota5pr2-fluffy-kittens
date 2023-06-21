@@ -2,6 +2,7 @@
 
 #include "../includes/form_field_confirm.h"
 #include "../includes/window_manager.h"
+#include "../includes/types.h"
 
 namespace kittens {
 shared_ptr<Form> CreateLoginForm() {
@@ -103,7 +104,7 @@ shared_ptr<Menu> CreateMainMenu() {
 
   // Debug Query
 
-  auto debugQuery = CreateQuery();  // change this to test
+  auto debugQuery = CreateQuery("SELECT * FROM PERFORMER", "DEBUG", {""});  // change this to test
 
   auto goToDebugQuery = [debugQuery] {
     WindowManager::Instance()->ChangeWindow(debugQuery);
@@ -153,6 +154,59 @@ shared_ptr<Query> CreateQuery(string query, string title,
 
 shared_ptr<Query> CreateQuery(string query, vector<int> growFactors,
                               string title, vector<string> notes) {
+
+  sqlite3 *db;
+  char *zErrMsg = 0;
+  int rc;
+
+  char* errorMessage = nullptr;
+  char** result; // Двумерный массив для хранения результатов запроса
+  int rows, columns;
+
+  
+
+  rc = sqlite3_open("../data/MusicSalonDatabase.db", &db);
+
+  if( rc ) {
+    fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
+    return(0);
+  } else {
+    fprintf(stderr, "Opened database successfully\n");
+  }
+
+  rc = sqlite3_get_table(db, query.c_str(), &result, &rows, &columns, &errorMessage);
+
+  if (rc != SQLITE_OK) {
+      fprintf(stderr, "Ошибка выполнения запроса: %s\n", errorMessage);
+      sqlite3_free(errorMessage);
+  } else {
+      // Используем результаты запроса
+      // Получаем заголовки столбцов
+      vector<string> headers;
+      for (int i = 0; i < columns; i++) {
+          headers.push_back(result[i]);
+      }
+      
+      auto queryWindow = make_shared<Query>(headers, growFactors);
+
+
+      for (int i = 1; i <= rows; i++) {
+          vector<string> row;
+          for (int j = 0; j < columns; j++) {
+              row.push_back(result[i * columns + j]);
+          }
+          queryWindow->AddRow(make_unique<QueryRow>(row));
+      }
+
+      sqlite3_free_table(result);
+      sqlite3_close(db);
+      return queryWindow;
+  }
+
+  sqlite3_close(db);
+  return nullptr;
+
+  
   // TO DO: execute sqlite3 query and get data
   // if failed {
   //   return nullptr;
@@ -171,6 +225,20 @@ shared_ptr<Query> CreateQuery(string query, vector<int> growFactors,
   // }
 
   // return queryWindow;
+
+  // Assuming you have already executed an SQLite query and obtained a result set
+  // sqlite3_stmt* stmt; // Assume this is the statement handle returned by sqlite3_prepare_v2
+  // int num_cols = sqlite3_column_count(stmt); // Get the number of columns in the result set
+
+  // // Print the names of the columns
+  // for (int i = 0; i < num_cols; i++) {
+  //   const char* col_name = sqlite3_column_name(stmt, i); // Get the name of the i-th column
+  //   std::cout << "Column " << i << ": " << col_name << std::endl;
+  // }
+
+
+
+
 };
 
 shared_ptr<Query> CreateAllCdQuery() {

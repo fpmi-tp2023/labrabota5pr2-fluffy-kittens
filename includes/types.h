@@ -14,6 +14,7 @@
 #include <regex>
 #include <numeric>
 #include <math.h>
+#include <sqlite3.h>
 
 namespace kittens {
 using std::cin;
