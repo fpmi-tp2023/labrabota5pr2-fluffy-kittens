@@ -20,6 +20,7 @@ class Query : public Window {
   vector<string> headers_;
   vector<int> column_grow_factors_;
   mutable vector<int> column_widths_;
+  mutable int rows_visible_;
   vector<unique_ptr<QueryRow>> rows_;
   int current_top_row_;
 };

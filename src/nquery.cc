@@ -1,4 +1,5 @@
 #include "../includes/nquery.h"
+#include "../includes/window_manager.h"
 
 namespace kittens {
 Query::Query(vector<string> headers, vector<int> column_grow_factors)
@@ -20,6 +21,8 @@ void Query::Render(WINDOW *window) {
 
   int height = y / 2;
   int width = x - 4;
+
+  rows_visible_ = height - 2;
 
   int window_x = (x - width) / 2;
   int window_y = (y - height) / 2;
@@ -44,7 +47,8 @@ void Query::Render(WINDOW *window) {
   mvwprintw(window, window_y + 1, window_x, "%s", line.c_str());
 
   int row_num = 0;
-  int print_rows_num = min(height - 2, columns_num);
+  int total_rows_num = rows_.size();
+  int print_rows_num = min(rows_visible_, total_rows_num);
 
   for (int i = 0; i < print_rows_num; ++i) {
     auto &row = rows_[current_top_row_ + i];
@@ -55,7 +59,31 @@ void Query::Render(WINDOW *window) {
   RenderModules(window);
 }
 
-void Query::HandleInput(int ch) {}
+void Query::HandleInput(int ch) {
+  if (ch == KEY_UP) {
+    if (current_top_row_ > 0) {
+      current_top_row_--;
+    }
+    return;
+  }
+
+  if (ch == KEY_DOWN) {
+    if (current_top_row_ < rows_.size() - rows_visible_) {
+      current_top_row_++;
+    }
+    return;
+  }
+
+  if (ch == '\n') {
+    WindowManager::Instance()->ReturnToPreviousWindow();
+    return;
+  }
+
+  if (ch == '\t') {
+    WindowManager::Instance()->ReturnToPreviousWindow();
+    return;
+  }
+}
 
 void Query::CleanUp() { current_top_row_ = 0; }
 
