@@ -135,13 +135,16 @@ shared_ptr<Message> CreateError(vector<string> lines,
   return message;
 }
 
-shared_ptr<Query> CreateQuery(){
+shared_ptr<Query> CreateQuery() {
   vector<string> headers{"a", "b", "c"};
   vector<int> grow_factors{3, 4, 5};
   auto query = make_shared<Query>(headers, grow_factors);
-  query->AddRow(make_unique<QueryRow>(headers));
-  query->AddRow(make_unique<QueryRow>(headers));
-  query->AddRow(make_unique<QueryRow>(headers));
+
+  for (int i = 0; i < 20; i++) {
+    vector<string> row{to_string(i), to_string(i * 2), to_string(i * 3)};
+    query->AddRow(make_unique<QueryRow>(row));
+  }
+
   return query;
 };
 

@@ -37,10 +37,10 @@ void WindowManager::Update() {
   if (!current_window_) {
     return;
   }
-  if (--clearBuffer <= 0) {
-    clearBuffer = clearRate;
-    clear();
-  }
+  // if (--clearBuffer <= 0) {
+  //   clearBuffer = clearRate;
+  //   clear();
+  // }
   current_window_->Render(stdscr);
   wrefresh(stdscr);
   int ch = getch();

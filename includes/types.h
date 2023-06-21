@@ -36,6 +36,7 @@ using std::get_time;
 using std::accumulate;
 using std::floor;
 using std::min;
+using std::to_string;
 }  // namespace kittens
 
 #endif /* INCLUDES_TYPES_H_ */
