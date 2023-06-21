@@ -1,28 +1,28 @@
-  ---
-  layout: default
-  title: Music Salon
-  ---
+---
+layout: default
+title: Music Salon
+---
 
-  # Music Salon
+# Music Salon
 
-  Welcome to our documentation! Here you can find all information about the project, 
-  check the project specifiation and many more!
+Welcome to our documentation! Here you can find all information about the project, 
+check the project specifiation and many more!
 
-  <details>
+<details>
   <summary>Usage</summary>
 
   - [Assignment](./assignment.md)
 
-  </details>
+</details>
 
-  <details>
+<details>
   <summary>Diagrams</summary>
 
   - [Class Diagrams](./diagrams/classes.drawio.png)
 
-  </details>
+</details>
 
-  <details>
+<details>
   <summary>Visuals</summary>
 
   - [Admin](./visual/Admin.jpg)
@@ -37,11 +37,11 @@
   - [Sales](./visual/Sales.jpg)
   - [Sign Up](./visual/Sign Up.jpg)
 
-  </details>
+</details>
 
-  <details>
+<details>
   <summary>License</summary>
 
   This documentation is released under the [MIT License](./LICENSE.txt).
 
-  </details>
+</details>
