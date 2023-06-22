@@ -15,9 +15,6 @@ shared_ptr<Menu> CreateAuthenthicationMenu();
 shared_ptr<Form> CreateLoginForm();
 shared_ptr<Message> CreateError(vector<string> lines,
                                 shared_ptr<Window> parent = nullptr);
-shared_ptr<Query> CreateQuery();  // to do: take sql query as argument
-shared_ptr<Query> CreateQuery(string query, string title = "",
-                              vector<string> notes = {""});
 shared_ptr<Query> CreateQuery(string query, vector<int> growFactors,
                               string title = "", vector<string> notes = {""});
 shared_ptr<Query> CreateAllCdQuery();
@@ -26,6 +23,5 @@ shared_ptr<Query> CreateMostSoldQuery();
 shared_ptr<Query> CreateMostPopularPerformerQuery();
 shared_ptr<Query> CreateAuthorsInformation();
 }  // namespace kittens
-
 
 #endif /* INCLUDES_WINDOW_CREATORS_H_ */
