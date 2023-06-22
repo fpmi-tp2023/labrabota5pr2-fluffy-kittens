@@ -103,25 +103,16 @@ shared_ptr<Menu> CreateMainMenu() {
     WindowManager::Instance()->ChangeWindow(authMenu);
   };
 
-  // Debug Query
-
-  auto debugQuery = CreateAuthorsInformation();  // change this to test
-
-  auto goToDebugQuery = [debugQuery] {
-    WindowManager::Instance()->ChangeWindow(debugQuery);
-  };
-
-  mainMenu->AddItem("Debug Query", goToDebugQuery);
-
   mainMenu->AddItem("Login", goToAuthMenu);
   mainMenu->AddItem("Sign Up", goToSignUpForm);
   mainMenu->AddItem("Exit", [] { WindowManager::Instance()->CloseWindow(); });
 
   auto title = make_unique<TitleModule>("Fluffy Kittens");
+
   vector<string> notesText = {
       "Made by A.Shpakovski, L.Shymkovich, T.Petrykevich"};
-
   auto notes = make_unique<NoteModule>(notesText);
+
   mainMenu->AddModule(move(title));
   mainMenu->AddModule(move(notes));
   return mainMenu;
