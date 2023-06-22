@@ -14,6 +14,9 @@
 #include <regex>
 #include <numeric>
 #include <math.h>
+#include <sqlite3.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 namespace kittens {
 using std::cin;
@@ -37,6 +40,8 @@ using std::accumulate;
 using std::floor;
 using std::min;
 using std::to_string;
+using std::cerr;
+using std::stoi;
 }  // namespace kittens
 
 #endif /* INCLUDES_TYPES_H_ */

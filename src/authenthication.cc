@@ -8,7 +8,41 @@ int AuthManager::AuthHash(string password) {
 }
 
 bool AuthManager::Authorize(string login, string password) {
-  // TO DO: make query for login and compare password hash with db hash
+  
+  auto value = AuthHash(password);
+
+  if (login.empty()) {
+    return false;
+  }
+
+  sqlite3 *db;
+  int rc = sqlite3_open("MusicSalonDatabase.db", &db);
+  if (rc != SQLITE_OK) {
+    cerr<<"Cannot open database: "<<sqlite3_errmsg(db)<<endl;
+  }
+
+  char **results = nullptr;
+  int rows, columns;
+  string query = "select hash from user where login = '" + login + "'";
+  rc = sqlite3_get_table(db, query.c_str(), &results, &rows, &columns, nullptr);
+  if (rc != SQLITE_OK) {
+    cerr<<"Query execution failed: "<<sqlite3_errmsg(db)<<endl;
+    sqlite3_free_table(results);
+    sqlite3_close(db);
+  }
+
+  if (rows == 0 || columns == 0) {
+    return false;
+  }
+  
+
+  if (!results[1]) {
+    sqlite3_free_table(results);
+    sqlite3_close(db);
+    return false;
+  }
+
+  return stoi(string(results[1])) == value;
 }
 
 void AuthManager::AuthenthicateAsAdmin() { is_user_admin_ = true; }

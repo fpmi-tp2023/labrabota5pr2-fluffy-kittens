@@ -21,6 +21,11 @@ shared_ptr<Query> CreateQuery(string query, string title = "",
 shared_ptr<Query> CreateQuery(string query, vector<int> growFactors,
                               string title = "", vector<string> notes = {""});
 shared_ptr<Query> CreateAllCdQuery();
+shared_ptr<Query> CreateSpecialCDQuery();
+shared_ptr<Query> CreateMostSoldQuery();
+shared_ptr<Query> CreateMostPopularPerformerQuery();
+shared_ptr<Query> CreateAuthorsInformation();
 }  // namespace kittens
+
 
 #endif /* INCLUDES_WINDOW_CREATORS_H_ */
