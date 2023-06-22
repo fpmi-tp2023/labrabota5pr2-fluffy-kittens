@@ -1,8 +1,18 @@
-title: Just the Docs Template
-description: A starter template for a Jeykll site using the Just the Docs theme!
+title: Music Salon
+description: Console Application for CD-Disc Shop Managment
 theme: just-the-docs
 
 url: https://fluffy-music-salon-for-kittens.io
 
+nav:
+  - title: Home
+    url: /
+  - title: Diagrams
+    url: /diagrams/diagrams
+  - title: Visuals
+    url: /visuals/visual
+  - title: Assignment
+    url: /assignment
+
 aux_links:
-  Template Repository: https://github.com/just-the-docs/just-the-docs-template
+  GitHub Repository: https://github.com/fpmi-tp2023/labrabota5pr2-fluffy-kittens
