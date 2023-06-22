@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Music Salon
+title: Home
 ---
 
 # Music Salon
