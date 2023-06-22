@@ -13,7 +13,7 @@
 namespace kittens {
 class Form : public Window {
  public:
-  Form(function<void()> submit);
+  Form(function<void(vector<string>)> submit);
   ~Form();
   void HandleInput(int ch) override;
   void Render(WINDOW *window) override;
@@ -23,7 +23,7 @@ class Form : public Window {
   void CleanUp() override;
 
  protected:
-  function<void()> submit_;
+  function<void(vector<string>)> submit_;
   vector<unique_ptr<FormField>> fields_;
   shared_ptr<NoteModule> validation_output_;
   int selected_;
