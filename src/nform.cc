@@ -4,7 +4,7 @@
 #include "../includes/window_manager.h"
 
 namespace kittens {
-Form::Form(function<void()> submit)
+Form::Form(function<void(vector<string>)> submit)
     : submit_(submit),
       fields_(),
       max_label_length_(0),
@@ -96,7 +96,13 @@ void Form::Submit() {
     return;
   }
 
-  submit_();
+  vector<string> values{};
+
+  for (auto& field : fields_) {
+    values.push_back(field->GetValue());
+  }
+
+  submit_(values);
 }
 
 void Form::CleanUp() {

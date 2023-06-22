@@ -35,7 +35,7 @@ void FormField::Render(WINDOW *window, int x, int y) const {
 
 bool FormField::Validate() const { return validator_(value_); }
 
-string_view FormField::GetValue() const { return value_; }
+string FormField::GetValue() const { return value_; }
 
 string_view FormField::GetLabel() const { return label_; }
 

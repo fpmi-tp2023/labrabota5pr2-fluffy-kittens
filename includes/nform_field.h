@@ -15,7 +15,7 @@ class FormField {
   void Clear();
   virtual void Render(WINDOW *window, int x, int y) const;
   bool Validate() const;
-  string_view GetValue() const;
+  string GetValue() const;
   string_view GetLabel() const;
   int GetMaxLen() const;
   string GetError() const;

@@ -21,7 +21,9 @@ shared_ptr<Query> CreateAllCdQuery();
 shared_ptr<Query> CreateSpecialCDQuery();
 shared_ptr<Query> CreateMostSoldQuery();
 shared_ptr<Query> CreateMostPopularPerformerQuery();
-shared_ptr<Query> CreateAuthorsInformation();
+shared_ptr<Query> CreateAuthorsInformationQuery();
+shared_ptr<Menu> CreateAdminMenu();
+shared_ptr<Menu> CreateGuestMenu();
 }  // namespace kittens
 
 #endif /* INCLUDES_WINDOW_CREATORS_H_ */
