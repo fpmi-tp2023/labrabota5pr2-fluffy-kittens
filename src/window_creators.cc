@@ -3,11 +3,61 @@
 #include "../includes/form_field_confirm.h"
 #include "../includes/window_manager.h"
 #include "../includes/types.h"
+#include "../includes/validators.h"
 
 
 namespace kittens {
+
+shared_ptr<Menu> CreateLoginMenu() {
+  auto loginMenu = make_shared<Menu>();
+  auto title = make_unique<TitleModule>("Getting information module");
+
+  vector<string> notesText = {
+      "To quit the user press Tab"};
+  auto notes = make_unique<NoteModule>(notesText);
+
+  loginMenu->AddModule(move(title));
+  loginMenu->AddModule(move(notes));
+  auto allCD = CreateAllCdQuery();
+  auto goToAllCD = [allCD] {
+    WindowManager::Instance()->ChangeWindow(allCD);
+  };
+
+  auto sales = CreateSpecialCDQuery();
+  auto goToSales = [sales] {
+    WindowManager::Instance()->ChangeWindow(sales);
+  };
+
+  auto mostSold = CreateMostSoldQuery();
+  auto goToMostSold = [mostSold] {
+    WindowManager::Instance()->ChangeWindow(mostSold);
+  };
+
+  auto mostPopularPerf = CreateMostPopularPerformerQuery();
+  auto goToMostPopularPerf = [mostPopularPerf] {
+    WindowManager::Instance()->ChangeWindow(mostPopularPerf);
+  };
+
+  auto authorsInfo = CreateAuthorsInformationQuery();
+  auto goToAuthorsInfo = [authorsInfo] {
+    WindowManager::Instance()->ChangeWindow(authorsInfo);
+  };
+
+  loginMenu->AddItem("All CDs", goToAllCD);
+  loginMenu->AddItem("Sales", goToSales);
+  loginMenu->AddItem("Most Sold CD", goToMostSold);
+  loginMenu->AddItem("Most popular performer", goToMostPopularPerf);
+  loginMenu->AddItem("All authors information", goToAuthorsInfo);
+  return loginMenu;
+}
+
+
 shared_ptr<Form> CreateLoginForm() {
-  auto loginSubmit = [] { return; };
+  auto loginSubmit = [] { 
+    auto login = CreateLoginMenu();
+    WindowManager::Instance()->ChangeWindow(login);
+    return;
+  };
 
   auto loginForm = make_shared<Form>(loginSubmit);
 
@@ -15,12 +65,14 @@ shared_ptr<Form> CreateLoginForm() {
       make_unique<FormField>("Login", ":(", [](string s) { return true; });
 
   auto passwordField = make_unique<FormFieldSecret>(
-      "Password", ":)", [](string s) { return true; });
+      "Password", ":)", [](string s) { return IsPasswordValid(s); });
 
   loginForm->AddField(move(loginField));
   loginForm->AddField(move(passwordField));
 
   auto title = make_unique<TitleModule>("Authentication");
+
+
 
   vector<string> notesText = {"Press Enter to authenticate",
                               "Or Tab to cancel"};
@@ -103,15 +155,12 @@ shared_ptr<Menu> CreateMainMenu() {
     WindowManager::Instance()->ChangeWindow(authMenu);
   };
 
-  // Debug Query
+  // Debug QueryWindowManager::Instance()->ChangeWindow(signUpForm);
+  // auto goToDebugQuery = [debugQuery] {
+  //   WindowManager::Instance()->ChangeWindow(debugQuery);
+  // };
 
-  auto debugQuery = CreateAuthorsInformation();  // change this to test
-
-  auto goToDebugQuery = [debugQuery] {
-    WindowManager::Instance()->ChangeWindow(debugQuery);
-  };
-
-  mainMenu->AddItem("Debug Query", goToDebugQuery);
+  // mainMenu->AddItem("Debug Query", goToDebugQuery);
 
   mainMenu->AddItem("Login", goToAuthMenu);
   mainMenu->AddItem("Sign Up", goToSignUpForm);
@@ -207,7 +256,7 @@ shared_ptr<Query> CreateAllCdQuery() {
 
 shared_ptr<Query> CreateSpecialCDQuery() {
   const char* query = "SELECT cd.Name AS CompactDisc_Name, SUM(do.Amount) AS SoldQuantity, SUM(do.Amount * cd.Price) AS TotalPrice FROM CompactDisc cd INNER JOIN DiscOperation do ON cd.ID = do.CompactDisc_ID INNER JOIN Operation o ON do.Operation_ID = o.ID WHERE cd.ID = 1 AND do.Operation_Date BETWEEN '2023-06-11' AND '2023-06-17' AND o.Name = 'Sale' GROUP BY cd.Name;";
-  return CreateQuery(query, {1, 1, 1, 1, 1}, "ALL CD");
+  return CreateQuery(query, {1, 1, 1, 1, 1}, "Sales");
 }
 
 shared_ptr<Query> CreateMostSoldQuery() {
@@ -220,9 +269,10 @@ shared_ptr<Query> CreateMostPopularPerformerQuery() {
   return CreateQuery(query, {2, 1}, "Most Popular Performer");
 }
 
-shared_ptr<Query> CreateAuthorsInformation() {
+shared_ptr<Query> CreateAuthorsInformationQuery() {
   const char* query = "SELECT a.Name AS Author_Name, SUM(do.Amount) AS TotalCompactDiscsSold, SUM(cd.Price * do.Amount) AS TotalRevenue FROM Author a INNER JOIN MusicalComposition mc ON a.ID = mc.Author_ID INNER JOIN CompactDisc cd ON mc.CompactDisc_ID = cd.ID INNER JOIN DiscOperation do ON cd.ID = do.CompactDisc_ID WHERE do.Operation_ID = 2 GROUP BY a.Name;";
-  return CreateQuery(query, {2, 1, 1}, "Information about Authors");
+  return CreateQuery(query, {2, 1, 1}, "All Authors");
 }
+
 
 }  // namespace kittens
