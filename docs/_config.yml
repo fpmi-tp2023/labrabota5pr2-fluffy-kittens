@@ -8,11 +8,11 @@ nav:
   - title: Home
     url: /
   - title: Diagrams
-    url: /diagrams/diagrams
+    url: /diagrams/
   - title: Visuals
-    url: /visuals/visual
+    url: /visuals/
   - title: Assignment
-    url: /assignment
+    url: /assignment/
 
 aux_links:
   GitHub Repository: https://github.com/fpmi-tp2023/labrabota5pr2-fluffy-kittens
