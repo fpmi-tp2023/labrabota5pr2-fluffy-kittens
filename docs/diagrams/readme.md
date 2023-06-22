@@ -1,3 +1,10 @@
+---
+layout: default
+title: UML Diagrams
+nav_order: 6
+permalink: /diagrams/
+---
+
 # UML Diagrams
 
 ## Use-cases
