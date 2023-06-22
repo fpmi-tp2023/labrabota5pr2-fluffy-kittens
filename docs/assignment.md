@@ -1,3 +1,10 @@
+---
+layout: default
+title: Assignment
+nav_order: 7
+permalink: /assignment/
+---
+
 # ЛАБОРАТОРНАЯ РАБОТА № 5
 
 Разработка консольного приложения с применением технологий управления
