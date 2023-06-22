@@ -4,7 +4,7 @@
 #include "../includes/window_manager.h"
 #include "../includes/types.h"
 #include "../includes/validators.h"
-
+#include "../includes/authenthication.h"
 
 namespace kittens {
 

@@ -63,8 +63,8 @@ void AuthManager::SignUp(string login, string password) {
 
   char *zErrMsg = 0;
   string sql;
-  sql = 'INSERT INTO USER(LOGIN, HASH, ROLE_ID) VALUES ("' + login + '", ' + to_string(value) + ', 2);'; 
-  rc = sqlite3_exec(db, sql, nullptr, 0, &zErrMsg);
+  sql = "INSERT INTO USER(LOGIN, HASH, ROLE_ID) VALUES ('" + login + "', " + to_string(value) + ", 2);"; 
+  rc = sqlite3_exec(db, sql.c_str(), nullptr, 0, &zErrMsg);
   if( rc != SQLITE_OK ){
     fprintf(stderr, "SQL error: %s\n", zErrMsg);
     sqlite3_free(zErrMsg);
