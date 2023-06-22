@@ -150,14 +150,20 @@ shared_ptr<Menu> CreateAuthenthicationMenu() {
 
   auto loginForm = CreateLoginForm();
 
-  auto goToLoginForm = [loginForm] {
+  auto authAsGuest = [loginForm] {
+    AuthManager::Authenthicate();
+    WindowManager::Instance()->ChangeWindow(loginForm);
+  };
+
+  auto authAsAdmin = [loginForm] {
+    AuthManager::Authenthicate(true);
     WindowManager::Instance()->ChangeWindow(loginForm);
   };
 
   auto goBack = [] { WindowManager::Instance()->ReturnToPreviousWindow(); };
 
-  authMenu->AddItem("Guest", goToLoginForm);
-  authMenu->AddItem("Admin", goToLoginForm);
+  authMenu->AddItem("Guest", authAsGuest);
+  authMenu->AddItem("Admin", authAsAdmin);
   authMenu->AddItem("Back", goBack);
 
   auto title = make_unique<TitleModule>("Authenthication");
