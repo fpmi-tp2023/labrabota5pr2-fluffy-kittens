@@ -1,0 +1,18 @@
+title: Music Salon
+description: Console Application for CD-Disc Shop Managment
+theme: just-the-docs
+
+url: https://fluffy-music-salon-for-kittens.io
+
+nav:
+  - title: Home
+    url: /
+  - title: Diagrams
+    url: /diagrams/
+  - title: Visuals
+    url: /visuals/
+  - title: Assignment
+    url: /assignment/
+
+aux_links:
+  GitHub Repository: https://github.com/fpmi-tp2023/labrabota5pr2-fluffy-kittens

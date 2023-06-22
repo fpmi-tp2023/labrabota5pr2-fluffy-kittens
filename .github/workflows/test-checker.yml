@@ -1,0 +1,36 @@
+name: Unit tests
+
+on:
+    push:
+        branches:
+            - '*'
+        paths:
+            - '**.cc'
+            - '**.h'
+    pull_request:
+      branches:
+        - main
+        - development
+      paths:
+        - '**.cc'
+        - '**.h'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Install gtest manually
+      run: sudo apt-get install libgtest-dev && cd /usr/src/gtest && sudo cmake CMakeLists.txt && sudo make && sudo cp lib/*.a /usr/lib && sudo ln -s /usr/lib/libgtest.a /usr/local/lib/libgtest.a && sudo ln -s /usr/lib/libgtest_main.a /usr/local/lib/libgtest_main.a
+
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Creating directories
+      run: mkdir -p build bin
+
+    - name: Build project
+      run: make build
+
+    - name: Run unit tests
+      run: make test
