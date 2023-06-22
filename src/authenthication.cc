@@ -73,8 +73,6 @@ void AuthManager::SignUp(string login, string password) {
   if (rc != SQLITE_OK) {
     fprintf(stderr, "SQL error: %s\n", zErrMsg);
     sqlite3_free(zErrMsg);
-  } else {
-    fprintf(stdout, "Records created successfully\n");
   }
 
   sqlite3_close(db);

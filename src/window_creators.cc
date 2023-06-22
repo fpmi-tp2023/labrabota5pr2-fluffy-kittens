@@ -115,6 +115,7 @@ shared_ptr<Form> CreateLoginForm() {
 shared_ptr<Form> CreateSignUpForm() {
   auto signUpSubmit = [](vector<string> values) {
     AuthManager::SignUp(values[0], values[1]);
+    WindowManager::Instance()->ChangeWindow(CreateGuestMenu());
     return;
   };
 
