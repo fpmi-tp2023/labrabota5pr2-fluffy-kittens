@@ -1,6 +1,16 @@
+---
+layout: default
+title: UML Diagrams
+nav_order: 6
+permalink: /diagrams/
+---
+
 # UML Diagrams
 
 ## Use-cases
+
+This Use-case diagram depicts the relationship between actors such as admins and average customers(users) and use cases based on the task specification.
+![Class diagram in UML notation](usecases.drawio.png)
 
 ## Classes
 

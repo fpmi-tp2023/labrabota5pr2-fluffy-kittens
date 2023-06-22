@@ -18,6 +18,24 @@ Responsible UI based on our window system provides reliable experience and our r
 holds information about every record in the store making it easy for both guests and shop
 administrators to find exactly what they look for
 
+## Github Pages
+
+https://fpmi-tp2023.github.io/labrabota5pr2-fluffy-kittens/
+
+## Installation
+
+Download whole project from https://github.com/fpmi-tp2023/labrabota5pr2-fluffy-kittens. Open Terminal on MacOS or Console on Linux. Enter downloaded project in Console.
+
+```
+cd <path>
+```
+
+Run Makefile with command:
+
+```
+make run
+```
+
 ## Usage
 
 You can navigate through windows using arrow keys. Press Enter to execute actions on interactive windows

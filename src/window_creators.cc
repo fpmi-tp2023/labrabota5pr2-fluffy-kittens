@@ -197,10 +197,11 @@ shared_ptr<Menu> CreateMainMenu() {
   mainMenu->AddItem("Exit", [] { WindowManager::Instance()->CloseWindow(); });
 
   auto title = make_unique<TitleModule>("Fluffy Kittens");
+
   vector<string> notesText = {
       "Made by A.Shpakovski, L.Shymkovich, T.Petrykevich"};
-
   auto notes = make_unique<NoteModule>(notesText);
+
   mainMenu->AddModule(move(title));
   mainMenu->AddModule(move(notes));
   return mainMenu;
@@ -213,21 +214,6 @@ shared_ptr<Message> CreateError(vector<string> lines,
   message->AddModule(move(title));
   return message;
 }
-
-shared_ptr<Query> CreateQuery() {
-  vector<string> headers = {"a", "b"};
-  vector<int> grow_factors = {1, 1};
-  auto query = make_shared<Query>(headers, grow_factors);
-  for (int i = 0; i < 20; i++) {
-    vector<string> row{to_string(i), to_string(i * 2)};
-    query->AddRow(make_unique<QueryRow>(row));
-  }
-
-  return query;
-}
-
-shared_ptr<Query> CreateQuery(string query, string title,
-                              vector<string> notes) {}
 
 shared_ptr<Query> CreateQuery(string query, vector<int> growFactors,
                               string title, vector<string> notes) {
