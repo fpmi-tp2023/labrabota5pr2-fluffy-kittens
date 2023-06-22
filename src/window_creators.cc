@@ -65,7 +65,7 @@ shared_ptr<Form> CreateLoginForm() {
       make_unique<FormField>("Login", ":(", [](string s) { return true; });
 
   auto passwordField = make_unique<FormFieldSecret>(
-      "Password", ":)", [](string s) { return IsPasswordValid(s); });
+      "Password", "Your password contains ", [](string s) { return IsPasswordValid(s); });
 
   loginForm->AddField(move(loginField));
   loginForm->AddField(move(passwordField));
@@ -97,7 +97,7 @@ shared_ptr<Form> CreateSignUpForm() {
       make_unique<FormFieldSecret>("Password",
                                    "Your password is too short, it may be "
                                    "unsafe: make it 8 characters at least",
-                                   [](string s) { return true; });
+                                   [](string s) { return IsPasswordValid(s); });
 
   signUp->AddField(move(loginField));
   signUp->AddField(move(passwordField));

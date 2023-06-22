@@ -14,6 +14,7 @@ class AuthManager {
   void AuthenthicateAsAdmin();
   bool IsUserAdmin() const;
   bool IsUserAuthorized() const;
+  static void SignUp(string login, string password);
 
  protected:
   bool is_user_admin_;
